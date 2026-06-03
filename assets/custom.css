@@ -1,0 +1,512 @@
+/* NFL Regression Dashboard — professional dark theme */
+
+:root {
+    /* Core palette */
+    --bg-app: #0d1117;
+    --bg-surface: #161b22;
+    --bg-elevated: #1f2630;
+    --bg-hover: #262f3d;
+
+    /* Borders */
+    --border-default: #30363d;
+    --border-soft: #3b4450;
+
+    /* Text */
+    --text-primary: #f0f6fc;
+    --text-secondary: #b6c2cf;
+    --text-muted: #8b949e;
+
+    /* Accent */
+    --accent: #58a6ff;
+    --accent-hover: #79c0ff;
+    --accent-soft: rgba(88, 166, 255, 0.15);
+
+    /* Effects */
+    --shadow-sm: 0 2px 6px rgba(0,0,0,0.25);
+    --shadow-md: 0 6px 18px rgba(0,0,0,0.35);
+
+    /* Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+
+    --font-sans:
+        "Inter",
+        "Segoe UI",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Helvetica Neue",
+        sans-serif;
+
+    /* Dash 4 component tokens (dark theme) — required for dcc.Dropdown visibility */
+    --Dash-Spacing: 4px;
+    --Dash-Fill-Inverse-Strong: #1f2630;
+    --Dash-Fill-Interactive-Strong: #58a6ff;
+    --Dash-Fill-Interactive-Weak: rgba(88, 166, 255, 0.15);
+    --Dash-Fill-Disabled: #30363d;
+    --Dash-Stroke-Strong: #30363d;
+    --Dash-Stroke-Weak: #3b4450;
+    --Dash-Text-Strong: #f0f6fc;
+    --Dash-Text-Weak: #b6c2cf;
+    --Dash-Text-Disabled: #8b949e;
+    --Dash-Shading-Strong: rgba(0, 0, 0, 0.45);
+    --Dash-Shading-Weak: rgba(0, 0, 0, 0.25);
+}
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+body {
+    background: var(--bg-app) !important;
+    color: var(--text-primary) !important;
+    font-family: var(--font-sans);
+    line-height: 1.55;
+    letter-spacing: 0.01em;
+}
+
+.dashboard-container {
+    max-width: 1680px;
+    padding-bottom: 3rem !important;
+}
+
+/* Smooth transitions everywhere */
+* {
+    transition:
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.app-navbar {
+    background: rgba(13, 17, 23, 0.92) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-default);
+    padding: 0.85rem 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.app-navbar .navbar-brand {
+    color: var(--text-primary) !important;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.app-navbar .navbar-brand-sub {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted) !important;
+    margin-top: 0.1rem;
+}
+
+.app-navbar .nav-link {
+    color: var(--text-secondary) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.55rem 0.9rem !important;
+    border-radius: var(--radius-sm);
+}
+
+.app-navbar .nav-link:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary) !important;
+}
+
+.app-navbar .nav-link.active {
+    background: var(--accent-soft);
+    color: var(--accent-hover) !important;
+    border: 1px solid rgba(88, 166, 255, 0.35);
+}
+
+.app-navbar .refresh-metrics-btn {
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.app-navbar .refresh-metrics-btn:disabled,
+.app-navbar .refresh-flags-btn:disabled {
+    opacity: 0.65;
+    cursor: wait;
+}
+
+.app-navbar .refresh-flags-btn {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+#metrics-updated-label {
+    font-size: 0.85rem;
+    margin-left: 0.25rem;
+}
+
+/* =========================================================
+   META STRIP
+========================================================= */
+
+.app-meta-strip {
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    padding: 0.7rem 0 1.4rem;
+    border-bottom: 1px solid var(--border-default);
+    margin-bottom: 1.75rem !important;
+}
+
+.app-meta-strip strong {
+    color: var(--text-primary);
+}
+
+.app-meta-strip .meta-label {
+    color: var(--text-muted);
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.page-card {
+    background: linear-gradient(
+        180deg,
+        rgba(31, 38, 48, 0.96) 0%,
+        rgba(22, 27, 34, 0.96) 100%
+    ) !important;
+
+    border: 1px solid var(--border-default) !important;
+    border-radius: var(--radius-md) !important;
+
+    box-shadow: var(--shadow-sm);
+
+    padding: 1rem;
+}
+
+.page-card:hover {
+    border-color: var(--border-soft) !important;
+    box-shadow: var(--shadow-md);
+}
+
+.page-title {
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+.page-description {
+    color: var(--text-secondary) !important;
+    font-size: 0.92rem;
+    max-width: 75ch;
+}
+
+/* =========================================================
+   FILTERS
+========================================================= */
+
+.filters-row {
+    background: rgba(31, 38, 48, 0.75);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 1.1rem 1.3rem;
+    margin-bottom: 1.5rem;
+}
+
+.filter-label {
+    color: var(--text-secondary) !important;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.45rem;
+}
+
+/* =========================================================
+   DASH 4 DROPDOWNS (dcc.Dropdown — not legacy react-select)
+========================================================= */
+
+.dash-dropdown-wrapper {
+    width: 100%;
+}
+
+/* Trigger button */
+.dash-dropdown-wrapper button.dash-dropdown {
+    background: var(--bg-elevated) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-default) !important;
+    border-radius: var(--radius-sm) !important;
+    min-height: 42px;
+    width: 100%;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: none !important;
+}
+
+.dash-dropdown-wrapper button.dash-dropdown:focus,
+.dash-dropdown-wrapper button.dash-dropdown:focus-visible {
+    border-color: var(--accent) !important;
+    outline: 2px solid rgba(88, 166, 255, 0.35) !important;
+    outline-offset: 1px;
+}
+
+/* Selected value(s) — must be explicit; inherit + inverse fill hides text */
+.dash-dropdown-wrapper .dash-dropdown-value,
+.dash-dropdown-wrapper .dash-dropdown-value-item {
+    color: var(--text-primary) !important;
+}
+
+.dash-dropdown-wrapper .dash-dropdown-placeholder {
+    color: var(--text-muted) !important;
+    font-weight: 400;
+}
+
+.dash-dropdown-wrapper .dash-dropdown-trigger-icon {
+    color: var(--text-secondary) !important;
+    fill: var(--text-secondary) !important;
+}
+
+.dash-dropdown-wrapper .dash-dropdown-value-count {
+    color: var(--text-secondary) !important;
+    background: var(--accent-soft) !important;
+}
+
+/* Popover menu */
+.dash-dropdown-wrapper .dash-dropdown-content {
+    background: var(--bg-surface) !important;
+    border: 1px solid var(--border-default) !important;
+    color: var(--text-primary) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+.dash-dropdown-wrapper .dash-dropdown-option {
+    color: var(--text-primary) !important;
+}
+
+.dash-dropdown-wrapper .dash-dropdown-search-container {
+    background: var(--bg-elevated) !important;
+    border-color: var(--border-default) !important;
+}
+
+.dash-dropdown-wrapper .dash-dropdown-search {
+    color: var(--text-primary) !important;
+}
+
+.dash-dropdown-wrapper .dash-dropdown-search-icon,
+.dash-dropdown-wrapper .dash-dropdown-clear {
+    color: var(--text-secondary) !important;
+}
+
+.dash-dropdown-wrapper .dash-dropdown-action-button {
+    color: var(--text-secondary) !important;
+}
+
+.dash-dropdown-wrapper .dash-dropdown-action-button:hover {
+    color: var(--accent) !important;
+}
+
+/* Options list highlight (keyboard / hover) */
+.dash-dropdown-wrapper .dash-options-list-option-wrapper:focus-within,
+.dash-dropdown-wrapper .dash-options-list-option-wrapper:hover {
+    background: var(--bg-hover) !important;
+}
+
+/* =========================================================
+   SLIDERS
+========================================================= */
+
+.rc-slider-track {
+    background-color: var(--accent) !important;
+    height: 6px;
+}
+
+.rc-slider-rail {
+    background-color: #2d333b !important;
+    height: 6px;
+}
+
+.rc-slider-handle {
+    border: 2px solid var(--accent) !important;
+    background-color: var(--bg-surface) !important;
+    width: 18px;
+    height: 18px;
+    margin-top: -6px;
+}
+
+.rc-slider-mark-text {
+    color: var(--text-muted) !important;
+    font-size: 0.75rem;
+}
+
+/* =========================================================
+   TABLES
+========================================================= */
+
+.dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner {
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.dash-table-container .previous-next-container {
+    color: var(--text-secondary) !important;
+}
+
+.dash-table-container button,
+.dash-table-container input {
+    background-color: var(--bg-elevated) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-default) !important;
+    border-radius: 6px;
+}
+
+/* =========================================================
+   ALERTS
+========================================================= */
+
+.alert {
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-default);
+    background-color: var(--bg-elevated);
+    color: var(--text-primary);
+}
+
+/* =========================================================
+   OFFCANVAS / SIDEPANEL
+========================================================= */
+
+.offcanvas {
+    background-color: var(--bg-surface) !important;
+    color: var(--text-primary) !important;
+    border-left: 1px solid var(--border-default) !important;
+}
+
+.offcanvas-header {
+    border-bottom: 1px solid var(--border-default);
+}
+
+.offcanvas-title {
+    font-weight: 700;
+}
+
+.offcanvas .btn-close {
+    filter: invert(1) grayscale(100%);
+}
+
+.player-detail-meta,
+.metric-secondary,
+.offcanvas .text-muted {
+    color: var(--text-secondary) !important;
+}
+
+.player-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.player-detail-header-main {
+    flex: 1;
+    min-width: 0;
+}
+
+.player-detail-headshot {
+    width: 88px;
+    height: 88px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-default);
+    background-color: var(--bg-elevated);
+    flex-shrink: 0;
+}
+
+.player-insight {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.detail-section-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.detail-subsection-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* =========================================================
+   BADGES
+========================================================= */
+
+.flag-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+
+    background-color: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+/* =========================================================
+   PLOTLY
+========================================================= */
+
+.js-plotly-plot .plotly .modebar {
+    background: transparent !important;
+}
+
+.js-plotly-plot .plotly .modebar-btn path {
+    fill: var(--text-secondary) !important;
+}
+
+.scatter-chart-wrap {
+    margin-top: 0.5rem;
+    width: 100%;
+    overflow: hidden;
+}
+
+.scatter-chart-wrap .js-plotly-plot,
+.scatter-chart-wrap .plot-container.plotly {
+    width: 100% !important;
+}
+
+/* =========================================================
+   TEAM LOGOS (DataTable markdown columns)
+========================================================= */
+
+.dash-table-container .dash-cell.column-team_logo .markdown-container,
+.dash-table-container .dash-cell.column-team_logo_prev .markdown-container,
+.dash-table-container .dash-cell[data-dash-column="team_logo"] .markdown-container,
+.dash-table-container .dash-cell[data-dash-column="team_logo_prev"] .markdown-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    overflow: hidden;
+}
+
+.dash-table-container .dash-cell.column-team_logo img,
+.dash-table-container .dash-cell.column-team_logo_prev img,
+.dash-table-container .dash-cell[data-dash-column="team_logo"] img,
+.dash-table-container .dash-cell[data-dash-column="team_logo_prev"] img {
+    height: 24px !important;
+    width: 24px !important;
+    max-height: 24px !important;
+    max-width: 24px !important;
+    object-fit: contain;
+}

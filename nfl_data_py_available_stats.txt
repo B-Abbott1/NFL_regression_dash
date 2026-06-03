@@ -1,0 +1,1363 @@
+NFL_DATA_PY AVAILABLE STATISTICS / COLUMNS
+========================================================================
+
+Reference file for NFL_reg_dash — fields available via nfl_data_py (nflverse).
+Sample year for column discovery: 2024
+
+------------------------------------------------------------------------
+PBP (PLAY-BY-PLAY)
+------------------------------------------------------------------------
+Loader: import_pbp_data(years, columns=None, ...)
+
+Count: 372
+
+  aborted_play
+  air_epa
+  air_wpa
+  air_yards
+  assist_tackle
+  assist_tackle_1_player_id
+  assist_tackle_1_player_name
+  assist_tackle_1_team
+  assist_tackle_2_player_id
+  assist_tackle_2_player_name
+  assist_tackle_2_team
+  assist_tackle_3_player_id
+  assist_tackle_3_player_name
+  assist_tackle_3_team
+  assist_tackle_4_player_id
+  assist_tackle_4_player_name
+  assist_tackle_4_team
+  away_coach
+  away_score
+  away_team
+  away_timeouts_remaining
+  away_wp
+  away_wp_post
+  blocked_player_id
+  blocked_player_name
+  comp_air_epa
+  comp_air_wpa
+  comp_yac_epa
+  comp_yac_wpa
+  complete_pass
+  cp
+  cpoe
+  def_wp
+  defensive_extra_point_attempt
+  defensive_extra_point_conv
+  defensive_two_point_attempt
+  defensive_two_point_conv
+  defteam
+  defteam_score
+  defteam_score_post
+  defteam_timeouts_remaining
+  desc
+  div_game
+  down
+  drive
+  drive_end_transition
+  drive_end_yard_line
+  drive_ended_with_score
+  drive_first_downs
+  drive_game_clock_end
+  drive_game_clock_start
+  drive_inside20
+  drive_play_count
+  drive_play_id_ended
+  drive_play_id_started
+  drive_quarter_end
+  drive_quarter_start
+  drive_real_start_time
+  drive_start_transition
+  drive_start_yard_line
+  drive_time_of_possession
+  drive_yards_penalized
+  end_clock_time
+  end_yard_line
+  ep
+  epa
+  extra_point_attempt
+  extra_point_prob
+  extra_point_result
+  fantasy
+  fantasy_id
+  fantasy_player_id
+  fantasy_player_name
+  fg_prob
+  field_goal_attempt
+  field_goal_result
+  first_down
+  first_down_pass
+  first_down_penalty
+  first_down_rush
+  fixed_drive
+  fixed_drive_result
+  forced_fumble_player_1_player_id
+  forced_fumble_player_1_player_name
+  forced_fumble_player_1_team
+  forced_fumble_player_2_player_id
+  forced_fumble_player_2_player_name
+  forced_fumble_player_2_team
+  fourth_down_converted
+  fourth_down_failed
+  fumble
+  fumble_forced
+  fumble_lost
+  fumble_not_forced
+  fumble_out_of_bounds
+  fumble_recovery_1_player_id
+  fumble_recovery_1_player_name
+  fumble_recovery_1_team
+  fumble_recovery_1_yards
+  fumble_recovery_2_player_id
+  fumble_recovery_2_player_name
+  fumble_recovery_2_team
+  fumble_recovery_2_yards
+  fumbled_1_player_id
+  fumbled_1_player_name
+  fumbled_1_team
+  fumbled_2_player_id
+  fumbled_2_player_name
+  fumbled_2_team
+  game_date
+  game_half
+  game_id
+  game_seconds_remaining
+  game_stadium
+  goal_to_go
+  half_sack_1_player_id
+  half_sack_1_player_name
+  half_sack_2_player_id
+  half_sack_2_player_name
+  half_seconds_remaining
+  home_coach
+  home_opening_kickoff
+  home_score
+  home_team
+  home_timeouts_remaining
+  home_wp
+  home_wp_post
+  id
+  incomplete_pass
+  interception
+  interception_player_id
+  interception_player_name
+  jersey_number
+  kick_distance
+  kicker_player_id
+  kicker_player_name
+  kickoff_attempt
+  kickoff_downed
+  kickoff_fair_catch
+  kickoff_in_endzone
+  kickoff_inside_twenty
+  kickoff_out_of_bounds
+  kickoff_returner_player_id
+  kickoff_returner_player_name
+  lateral_interception_player_id
+  lateral_interception_player_name
+  lateral_kickoff_returner_player_id
+  lateral_kickoff_returner_player_name
+  lateral_punt_returner_player_id
+  lateral_punt_returner_player_name
+  lateral_receiver_player_id
+  lateral_receiver_player_name
+  lateral_receiving_yards
+  lateral_reception
+  lateral_recovery
+  lateral_return
+  lateral_rush
+  lateral_rusher_player_id
+  lateral_rusher_player_name
+  lateral_rushing_yards
+  lateral_sack_player_id
+  lateral_sack_player_name
+  location
+  name
+  nfl_api_id
+  no_huddle
+  no_score_prob
+  old_game_id
+  opp_fg_prob
+  opp_safety_prob
+  opp_td_prob
+  order_sequence
+  out_of_bounds
+  own_kickoff_recovery
+  own_kickoff_recovery_player_id
+  own_kickoff_recovery_player_name
+  own_kickoff_recovery_td
+  pass
+  pass_attempt
+  pass_defense_1_player_id
+  pass_defense_1_player_name
+  pass_defense_2_player_id
+  pass_defense_2_player_name
+  pass_length
+  pass_location
+  pass_oe
+  pass_touchdown
+  passer
+  passer_id
+  passer_jersey_number
+  passer_player_id
+  passer_player_name
+  passing_yards
+  penalty
+  penalty_player_id
+  penalty_player_name
+  penalty_team
+  penalty_type
+  penalty_yards
+  play
+  play_clock
+  play_deleted
+  play_id
+  play_type
+  play_type_nfl
+  posteam
+  posteam_score
+  posteam_score_post
+  posteam_timeouts_remaining
+  posteam_type
+  punt_attempt
+  punt_blocked
+  punt_downed
+  punt_fair_catch
+  punt_in_endzone
+  punt_inside_twenty
+  punt_out_of_bounds
+  punt_returner_player_id
+  punt_returner_player_name
+  punter_player_id
+  punter_player_name
+  qb_dropback
+  qb_epa
+  qb_hit
+  qb_hit_1_player_id
+  qb_hit_1_player_name
+  qb_hit_2_player_id
+  qb_hit_2_player_name
+  qb_kneel
+  qb_scramble
+  qb_spike
+  qtr
+  quarter_end
+  quarter_seconds_remaining
+  receiver
+  receiver_id
+  receiver_jersey_number
+  receiver_player_id
+  receiver_player_name
+  receiving_yards
+  replay_or_challenge
+  replay_or_challenge_result
+  result
+  return_team
+  return_touchdown
+  return_yards
+  roof
+  run_gap
+  run_location
+  rush
+  rush_attempt
+  rush_touchdown
+  rusher
+  rusher_id
+  rusher_jersey_number
+  rusher_player_id
+  rusher_player_name
+  rushing_yards
+  sack
+  sack_player_id
+  sack_player_name
+  safety
+  safety_player_id
+  safety_player_name
+  safety_prob
+  score_differential
+  score_differential_post
+  season
+  season_type
+  series
+  series_result
+  series_success
+  shotgun
+  side_of_field
+  solo_tackle
+  solo_tackle_1_player_id
+  solo_tackle_1_player_name
+  solo_tackle_1_team
+  solo_tackle_2_player_id
+  solo_tackle_2_player_name
+  solo_tackle_2_team
+  sp
+  special
+  special_teams_play
+  spread_line
+  st_play_type
+  stadium
+  stadium_id
+  start_time
+  success
+  surface
+  tackle_for_loss_1_player_id
+  tackle_for_loss_1_player_name
+  tackle_for_loss_2_player_id
+  tackle_for_loss_2_player_name
+  tackle_with_assist
+  tackle_with_assist_1_player_id
+  tackle_with_assist_1_player_name
+  tackle_with_assist_1_team
+  tackle_with_assist_2_player_id
+  tackle_with_assist_2_player_name
+  tackle_with_assist_2_team
+  tackled_for_loss
+  td_player_id
+  td_player_name
+  td_prob
+  td_team
+  temp
+  third_down_converted
+  third_down_failed
+  time
+  time_of_day
+  timeout
+  timeout_team
+  total
+  total_away_comp_air_epa
+  total_away_comp_air_wpa
+  total_away_comp_yac_epa
+  total_away_comp_yac_wpa
+  total_away_epa
+  total_away_pass_epa
+  total_away_pass_wpa
+  total_away_raw_air_epa
+  total_away_raw_air_wpa
+  total_away_raw_yac_epa
+  total_away_raw_yac_wpa
+  total_away_rush_epa
+  total_away_rush_wpa
+  total_away_score
+  total_home_comp_air_epa
+  total_home_comp_air_wpa
+  total_home_comp_yac_epa
+  total_home_comp_yac_wpa
+  total_home_epa
+  total_home_pass_epa
+  total_home_pass_wpa
+  total_home_raw_air_epa
+  total_home_raw_air_wpa
+  total_home_raw_yac_epa
+  total_home_raw_yac_wpa
+  total_home_rush_epa
+  total_home_rush_wpa
+  total_home_score
+  total_line
+  touchback
+  touchdown
+  two_point_attempt
+  two_point_conv_result
+  two_point_conversion_prob
+  vegas_home_wp
+  vegas_home_wpa
+  vegas_wp
+  vegas_wpa
+  weather
+  week
+  wind
+  wp
+  wpa
+  xpass
+  xyac_epa
+  xyac_fd
+  xyac_mean_yardage
+  xyac_median_yardage
+  xyac_success
+  yac_epa
+  yac_wpa
+  yardline_100
+  yards_after_catch
+  yards_gained
+  ydsnet
+  ydstogo
+  yrdln
+
+------------------------------------------------------------------------
+WEEKLY PLAYER STATS
+------------------------------------------------------------------------
+Loader: import_weekly_data(years, columns=None, ...)
+
+Count: 53
+
+  air_yards_share
+  attempts
+  carries
+  completions
+  dakota
+  fantasy_points
+  fantasy_points_ppr
+  headshot_url
+  interceptions
+  opponent_team
+  pacr
+  passing_2pt_conversions
+  passing_air_yards
+  passing_epa
+  passing_first_downs
+  passing_tds
+  passing_yards
+  passing_yards_after_catch
+  player_display_name
+  player_id
+  player_name
+  position
+  position_group
+  racr
+  receiving_2pt_conversions
+  receiving_air_yards
+  receiving_epa
+  receiving_first_downs
+  receiving_fumbles
+  receiving_fumbles_lost
+  receiving_tds
+  receiving_yards
+  receiving_yards_after_catch
+  recent_team
+  receptions
+  rushing_2pt_conversions
+  rushing_epa
+  rushing_first_downs
+  rushing_fumbles
+  rushing_fumbles_lost
+  rushing_tds
+  rushing_yards
+  sack_fumbles
+  sack_fumbles_lost
+  sack_yards
+  sacks
+  season
+  season_type
+  special_teams_tds
+  target_share
+  targets
+  week
+  wopr
+
+------------------------------------------------------------------------
+SEASONAL PLAYER STATS
+------------------------------------------------------------------------
+import_seasonal_data(years, s_type=REG)
+
+Count: 58
+
+  air_yards_share
+  attempts
+  ay_sh
+  carries
+  completions
+  dakota
+  dom
+  fantasy_points
+  fantasy_points_ppr
+  games
+  interceptions
+  pacr
+  passing_2pt_conversions
+  passing_air_yards
+  passing_epa
+  passing_first_downs
+  passing_tds
+  passing_yards
+  passing_yards_after_catch
+  player_id
+  ppr_sh
+  racr
+  receiving_2pt_conversions
+  receiving_air_yards
+  receiving_epa
+  receiving_first_downs
+  receiving_fumbles
+  receiving_fumbles_lost
+  receiving_tds
+  receiving_yards
+  receiving_yards_after_catch
+  receptions
+  rfd_sh
+  rtd_sh
+  rtdfd_sh
+  rushing_2pt_conversions
+  rushing_epa
+  rushing_first_downs
+  rushing_fumbles
+  rushing_fumbles_lost
+  rushing_tds
+  rushing_yards
+  ry_sh
+  sack_fumbles
+  sack_fumbles_lost
+  sack_yards
+  sacks
+  season
+  season_type
+  special_teams_tds
+  target_share
+  targets
+  tgt_sh
+  w8dom
+  wopr_x
+  wopr_y
+  yac_sh
+  yptmpa
+
+------------------------------------------------------------------------
+SEASONAL ROSTERS
+------------------------------------------------------------------------
+import_seasonal_rosters(years, columns=None)
+
+Count: 37
+
+  age
+  birth_date
+  college
+  depth_chart_position
+  draft_club
+  draft_number
+  entry_year
+  esb_id
+  espn_id
+  fantasy_data_id
+  first_name
+  football_name
+  game_type
+  gsis_it_id
+  headshot_url
+  height
+  jersey_number
+  last_name
+  ngs_position
+  pff_id
+  pfr_id
+  player_id
+  player_name
+  position
+  rookie_year
+  rotowire_id
+  season
+  sleeper_id
+  smart_id
+  sportradar_id
+  status
+  status_description_abbr
+  team
+  week
+  weight
+  yahoo_id
+  years_exp
+
+------------------------------------------------------------------------
+WEEKLY ROSTERS
+------------------------------------------------------------------------
+import_weekly_rosters(years, columns=None)
+
+Count: 37
+
+  age
+  birth_date
+  college
+  depth_chart_position
+  draft_club
+  draft_number
+  entry_year
+  esb_id
+  espn_id
+  fantasy_data_id
+  first_name
+  football_name
+  game_type
+  gsis_it_id
+  headshot_url
+  height
+  jersey_number
+  last_name
+  ngs_position
+  pff_id
+  pfr_id
+  player_id
+  player_name
+  position
+  rookie_year
+  rotowire_id
+  season
+  sleeper_id
+  smart_id
+  sportradar_id
+  status
+  status_description_abbr
+  team
+  week
+  weight
+  yahoo_id
+  years_exp
+
+------------------------------------------------------------------------
+PLAYERS (MASTER)
+------------------------------------------------------------------------
+import_players()
+
+Count: 39
+
+  birth_date
+  college_conference
+  college_name
+  common_first_name
+  display_name
+  draft_pick
+  draft_round
+  draft_team
+  draft_year
+  esb_id
+  espn_id
+  first_name
+  football_name
+  gsis_id
+  headshot
+  height
+  jersey_number
+  last_name
+  last_season
+  latest_team
+  nfl_id
+  ngs_position
+  ngs_position_group
+  ngs_status
+  ngs_status_short_description
+  otc_id
+  pff_id
+  pff_position
+  pff_status
+  pfr_id
+  position
+  position_group
+  rookie_season
+  short_name
+  smart_id
+  status
+  suffix
+  weight
+  years_of_experience
+
+------------------------------------------------------------------------
+TEAM DESCRIPTIONS
+------------------------------------------------------------------------
+import_team_desc()
+
+Count: 16
+
+  team_abbr
+  team_color
+  team_color2
+  team_color3
+  team_color4
+  team_conf
+  team_conference_logo
+  team_division
+  team_id
+  team_league_logo
+  team_logo_espn
+  team_logo_squared
+  team_logo_wikipedia
+  team_name
+  team_nick
+  team_wordmark
+
+------------------------------------------------------------------------
+SCHEDULES
+------------------------------------------------------------------------
+import_schedules(years)
+
+Count: 46
+
+  away_coach
+  away_moneyline
+  away_qb_id
+  away_qb_name
+  away_rest
+  away_score
+  away_spread_odds
+  away_team
+  div_game
+  espn
+  ftn
+  game_id
+  game_type
+  gameday
+  gametime
+  gsis
+  home_coach
+  home_moneyline
+  home_qb_id
+  home_qb_name
+  home_rest
+  home_score
+  home_spread_odds
+  home_team
+  location
+  nfl_detail_id
+  old_game_id
+  over_odds
+  overtime
+  pff
+  pfr
+  referee
+  result
+  roof
+  season
+  spread_line
+  stadium
+  stadium_id
+  surface
+  temp
+  total
+  total_line
+  under_odds
+  week
+  weekday
+  wind
+
+------------------------------------------------------------------------
+WIN TOTALS
+------------------------------------------------------------------------
+import_win_totals(years=None)
+
+Count: 9
+
+  abbr
+  book
+  game_id
+  lines
+  market_type
+  odds
+  opening_lines
+  opening_odds
+  season
+
+------------------------------------------------------------------------
+OFFICIALS
+------------------------------------------------------------------------
+import_officials(years=None)
+
+Count: 5
+
+  game_id
+  name
+  off_pos
+  official_id
+  season
+
+------------------------------------------------------------------------
+SCORING LINES
+------------------------------------------------------------------------
+import_sc_lines(years=None)
+
+Count: 7
+
+  away_team
+  game_id
+  home_team
+  line
+  season
+  side
+  week
+
+------------------------------------------------------------------------
+DRAFT PICKS
+------------------------------------------------------------------------
+import_draft_picks(years=None)
+
+Count: 36
+
+  age
+  allpro
+  car_av
+  category
+  cfb_player_id
+  college
+  def_ints
+  def_sacks
+  def_solo_tackles
+  dr_av
+  games
+  gsis_id
+  hof
+  pass_attempts
+  pass_completions
+  pass_ints
+  pass_tds
+  pass_yards
+  pfr_player_id
+  pfr_player_name
+  pick
+  position
+  probowls
+  rec_tds
+  rec_yards
+  receptions
+  round
+  rush_atts
+  rush_tds
+  rush_yards
+  season
+  seasons_started
+  side
+  team
+  to
+  w_av
+
+------------------------------------------------------------------------
+DRAFT VALUES
+------------------------------------------------------------------------
+import_draft_values(picks=None)
+
+Count: 6
+
+  hill
+  johnson
+  otc
+  pff
+  pick
+  stuart
+
+------------------------------------------------------------------------
+COMBINE
+------------------------------------------------------------------------
+import_combine_data(years=None, positions=None)
+
+Count: 18
+
+  bench
+  broad_jump
+  cfb_id
+  cone
+  draft_ovr
+  draft_round
+  draft_team
+  draft_year
+  forty
+  ht
+  pfr_id
+  player_name
+  pos
+  school
+  season
+  shuttle
+  vertical
+  wt
+
+------------------------------------------------------------------------
+PLAYER IDS CROSSWALK
+------------------------------------------------------------------------
+import_ids(columns=None, ids=None)
+
+Count: 35
+
+  age
+  birthdate
+  cbs_id
+  cfbref_id
+  college
+  db_season
+  draft_ovr
+  draft_pick
+  draft_round
+  draft_year
+  espn_id
+  fantasy_data_id
+  fantasypros_id
+  fleaflicker_id
+  gsis_id
+  height
+  ktc_id
+  merge_name
+  mfl_id
+  name
+  nfl_id
+  pff_id
+  pfr_id
+  position
+  rotowire_id
+  rotoworld_id
+  sleeper_id
+  sportradar_id
+  stats_global_id
+  stats_id
+  swish_id
+  team
+  twitter_username
+  weight
+  yahoo_id
+
+------------------------------------------------------------------------
+CONTRACTS
+------------------------------------------------------------------------
+import_contracts()
+
+Count: 25
+
+  apy
+  apy_cap_pct
+  college
+  cols
+  date_of_birth
+  draft_overall
+  draft_round
+  draft_team
+  draft_year
+  gsis_id
+  guaranteed
+  height
+  inflated_apy
+  inflated_guaranteed
+  inflated_value
+  is_active
+  otc_id
+  player
+  player_page
+  position
+  team
+  value
+  weight
+  year_signed
+  years
+
+------------------------------------------------------------------------
+NGS PASSING
+------------------------------------------------------------------------
+import_ngs_data(stat_type, years) — passing|rushing|receiving
+
+Count: 29
+
+  aggressiveness
+  attempts
+  avg_air_distance
+  avg_air_yards_differential
+  avg_air_yards_to_sticks
+  avg_completed_air_yards
+  avg_intended_air_yards
+  avg_time_to_throw
+  completion_percentage
+  completion_percentage_above_expectation
+  completions
+  expected_completion_percentage
+  interceptions
+  max_air_distance
+  max_completed_air_distance
+  pass_touchdowns
+  pass_yards
+  passer_rating
+  player_display_name
+  player_first_name
+  player_gsis_id
+  player_jersey_number
+  player_last_name
+  player_position
+  player_short_name
+  season
+  season_type
+  team_abbr
+  week
+
+------------------------------------------------------------------------
+NGS RUSHING
+------------------------------------------------------------------------
+Count: 22
+
+  avg_rush_yards
+  avg_time_to_los
+  efficiency
+  expected_rush_yards
+  percent_attempts_gte_eight_defenders
+  player_display_name
+  player_first_name
+  player_gsis_id
+  player_jersey_number
+  player_last_name
+  player_position
+  player_short_name
+  rush_attempts
+  rush_pct_over_expected
+  rush_touchdowns
+  rush_yards
+  rush_yards_over_expected
+  rush_yards_over_expected_per_att
+  season
+  season_type
+  team_abbr
+  week
+
+------------------------------------------------------------------------
+NGS RECEIVING
+------------------------------------------------------------------------
+Count: 23
+
+  avg_cushion
+  avg_expected_yac
+  avg_intended_air_yards
+  avg_separation
+  avg_yac
+  avg_yac_above_expectation
+  catch_percentage
+  percent_share_of_intended_air_yards
+  player_display_name
+  player_first_name
+  player_gsis_id
+  player_jersey_number
+  player_last_name
+  player_position
+  player_short_name
+  rec_touchdowns
+  receptions
+  season
+  season_type
+  targets
+  team_abbr
+  week
+  yards
+
+------------------------------------------------------------------------
+DEPTH CHARTS
+------------------------------------------------------------------------
+import_depth_charts(years)
+
+Count: 15
+
+  club_code
+  depth_position
+  depth_team
+  elias_id
+  first_name
+  football_name
+  formation
+  full_name
+  game_type
+  gsis_id
+  jersey_number
+  last_name
+  position
+  season
+  week
+
+------------------------------------------------------------------------
+INJURIES
+------------------------------------------------------------------------
+import_injuries(years)
+
+Count: 16
+
+  date_modified
+  first_name
+  full_name
+  game_type
+  gsis_id
+  last_name
+  position
+  practice_primary_injury
+  practice_secondary_injury
+  practice_status
+  report_primary_injury
+  report_secondary_injury
+  report_status
+  season
+  team
+  week
+
+------------------------------------------------------------------------
+QBR (SEASON)
+------------------------------------------------------------------------
+import_qbr(years, level=nfl, frequency=season|weekly)
+
+Count: 23
+
+  epa_total
+  exp_sack
+  game_week
+  headshot_href
+  name_display
+  name_first
+  name_last
+  name_short
+  pass
+  penalty
+  player_id
+  pts_added
+  qb_plays
+  qbr_raw
+  qbr_total
+  qualified
+  rank
+  run
+  sack
+  season
+  season_type
+  team
+  team_abb
+
+------------------------------------------------------------------------
+SNAP COUNTS
+------------------------------------------------------------------------
+import_snap_counts(years)
+
+Count: 16
+
+  defense_pct
+  defense_snaps
+  game_id
+  game_type
+  offense_pct
+  offense_snaps
+  opponent
+  pfr_game_id
+  pfr_player_id
+  player
+  position
+  season
+  st_pct
+  st_snaps
+  team
+  week
+
+------------------------------------------------------------------------
+FTN CHARTING
+------------------------------------------------------------------------
+import_ftn_data(years, columns=None, ...)
+
+Count: 29
+
+  date_pulled
+  ftn_game_id
+  ftn_play_id
+  is_catchable_ball
+  is_contested_ball
+  is_created_reception
+  is_drop
+  is_interception_worthy
+  is_motion
+  is_no_huddle
+  is_play_action
+  is_qb_fault_sack
+  is_qb_out_of_pocket
+  is_qb_sneak
+  is_rpo
+  is_screen_pass
+  is_throw_away
+  is_trick_play
+  n_blitzers
+  n_defense_box
+  n_offense_backfield
+  n_pass_rushers
+  nflverse_game_id
+  nflverse_play_id
+  qb_location
+  read_thrown
+  season
+  starting_hash
+  week
+
+------------------------------------------------------------------------
+PFR SEASONAL (PASS)
+------------------------------------------------------------------------
+import_seasonal_pfr(s_type, years) — pass|rec|rush|def
+
+Count: 37
+
+  bad_throw_pct
+  bad_throws
+  batted_balls
+  completed_air_yards
+  completed_air_yards_per_completion
+  completed_air_yards_per_pass_attempt
+  drop_pct
+  drops
+  intended_air_yards
+  intended_air_yards_per_pass_attempt
+  on_tgt_pct
+  on_tgt_throws
+  pa_pass_att
+  pa_pass_yards
+  pass_attempts
+  pass_yards_after_catch
+  pass_yards_after_catch_per_completion
+  pfr_id
+  player
+  pocket_time
+  pressure_pct
+  rpo_pass_att
+  rpo_pass_yards
+  rpo_plays
+  rpo_rush_att
+  rpo_rush_yards
+  rpo_yards
+  scramble_yards_per_attempt
+  scrambles
+  season
+  spikes
+  team
+  throwaways
+  times_blitzed
+  times_hit
+  times_hurried
+  times_pressured
+
+------------------------------------------------------------------------
+PFR WEEKLY (PASS)
+------------------------------------------------------------------------
+import_weekly_pfr(s_type, years)
+
+Count: 24
+
+  def_times_blitzed
+  def_times_hitqb
+  def_times_hurried
+  game_id
+  game_type
+  opponent
+  passing_bad_throw_pct
+  passing_bad_throws
+  passing_drop_pct
+  passing_drops
+  pfr_game_id
+  pfr_player_id
+  pfr_player_name
+  receiving_drop
+  receiving_drop_pct
+  season
+  team
+  times_blitzed
+  times_hit
+  times_hurried
+  times_pressured
+  times_pressured_pct
+  times_sacked
+  week
+
+========================================================================
+ALL import_* LOADERS
+========================================================================
+  import_combine_data(years=None, positions=None)
+  import_contracts()
+  import_depth_charts(years)
+  import_draft_picks(years=None)
+  import_draft_values(picks=None)
+  import_ftn_data(years, columns=None, downcast=True, thread_requests=False)
+  import_ids(columns=None, ids=None)
+  import_injuries(years)
+  import_ngs_data(stat_type, years=None)
+  import_officials(years=None)
+  import_pbp_data(years, columns=None, include_participation=True, downcast=True, cache=False, alt_path=None, thread_requests=False)
+  import_players()
+  import_qbr(years=None, level='nfl', frequency='season')
+  import_sc_lines(years=None)
+  import_schedules(years)
+  import_seasonal_data(years, s_type='REG')
+  import_seasonal_pfr(s_type, years=None)
+  import_seasonal_rosters(years, columns=None)
+  import_snap_counts(years)
+  import_team_desc()
+  import_weekly_data(years, columns=None, downcast=True, thread_requests=False)
+  import_weekly_pfr(s_type, years=None)
+  import_weekly_rosters(years, columns=None)
+  import_win_totals(years=None)
+
+========================================================================
+CURRENTLY USED IN NFL_REG_DASH
+========================================================================
+
+Loaded via metrics/loader.py:
+  - import_pbp_data           -> pbp (subset: config.PBP_COLUMNS)
+  - import_weekly_data        -> weekly (2023-2024; 2025+ derived from PBP)
+  - import_ngs_data           -> ngs_passing, ngs_receiving, ngs_rushing
+  - import_seasonal_rosters   -> rosters
+
+PBP columns requested (config.PBP_COLUMNS):
+  passer_player_id
+  receiver_player_id
+  rusher_player_id
+  passer_player_name
+  receiver_player_name
+  rusher_player_name
+  posteam
+  season
+  week
+  season_type
+  pass_attempt
+  complete_pass
+  incomplete_pass
+  air_yards
+  yards_after_catch
+  yards_gained
+  pass_touchdown
+  rush_touchdown
+  receiving_touchdown
+  sack
+  was_pressure
+  cp
+  xyac_mean_yardage
+  yardline_100
+  rush_attempt
+  rush
+  rush_20plus
+  interception
+
+Weekly columns requested (config.WEEKLY_COLUMNS):
+  player_id
+  player_name
+  position
+  recent_team
+  season
+  week
+  completions
+  attempts
+  passing_yards
+  passing_tds
+  interceptions
+  carries
+  rushing_yards
+  rushing_tds
+  receptions
+  targets
+  receiving_yards
+  receiving_tds
+  target_share
+  air_yards_share
+  wopr
+  racr
+
+Available but NOT loaded in this project:
+  - import_combine_data
+  - import_contracts
+  - import_depth_charts
+  - import_draft_picks
+  - import_draft_values
+  - import_ftn_data
+  - import_ids
+  - import_injuries
+  - import_officials
+  - import_players
+  - import_qbr
+  - import_sc_lines
+  - import_schedules
+  - import_seasonal_data
+  - import_seasonal_pfr
+  - import_snap_counts
+  - import_team_desc
+  - import_weekly_pfr
+  - import_weekly_rosters
+  - import_win_totals
+
+Data NOT in nfl_data_py (typical external sources):
+  - Vegas lines / sportsbook odds (e.g. Odds API, Action Network)
+  - Proprietary coaching / scheme tags
+  - Real-time injury designations beyond nflverse injury reports
+  - Salary cap / contract detail beyond spotrac-style imports
+  - College / pre-draft athletic testing beyond combine

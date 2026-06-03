@@ -1,0 +1,193 @@
+Top 10 WR by Receiving Yards - Composite Breakdown (v11)
+Season: 2025  Scoring version: 11
+Threshold: +/-1.28
+
+====================================================================================================
+J.Smith-Njigba | Team SEA | RecYds 1793 | Targets 163
+Raw composite_z=+0.522 | volume_percentile=0.967 | volume_scalar=0.987
+Adjusted composite_z=+0.516 | sustainability_score=0.887 (sustainable)
+regression_flag=neutral | refined_flag=neutral | displayed_flag=neutral
+
+Metric contributions (sorted by |z*w|):
+metric_id | name | z | weight | z*w
+opportunity_share | Opportunity Share | +3.023 | 1.50 | +4.535
+recv_ypt | Yards Per Target | -2.154 | 1.50 | -3.230
+recv_target_share | Target Share | +2.099 | 1.50 | +3.149
+vol_targets | Targets | +2.132 | 1.00 | +2.132
+recv_catch_rate_oe | Catch Rate Over Expected | -2.013 | 1.00 | -2.013
+recv_td_share | TD Share vs. Opportunity | +0.778 | 0.75 | +0.584
+recv_yac_oe | YAC Over Expected | +0.313 | 1.00 | +0.313
+recv_separation | Average Separation | -0.210 | 1.00 | -0.210
+age_curve | Age Curve | -0.047 | 0.75 | -0.035
+SUM(z*w)=+5.224  SUM(w)=10.000  Recalc raw=+0.522
+
+====================================================================================================
+P.Nacua | Team LA | RecYds 1715 | Targets 166
+Raw composite_z=+0.257 | volume_percentile=0.978 | volume_scalar=0.991
+Adjusted composite_z=+0.255 | sustainability_score=0.861 (sustainable)
+regression_flag=neutral | refined_flag=neutral | displayed_flag=neutral
+
+Metric contributions (sorted by |z*w|):
+metric_id | name | z | weight | z*w
+opportunity_share | Opportunity Share | +1.815 | 1.50 | +2.722
+recv_ypt | Yards Per Target | -1.619 | 1.50 | -2.429
+vol_targets | Targets | +2.213 | 1.00 | +2.213
+recv_target_share | Target Share | +1.361 | 1.50 | +2.041
+recv_catch_rate_oe | Catch Rate Over Expected | -1.955 | 1.00 | -1.955
+recv_yac_oe | YAC Over Expected | -0.508 | 1.00 | -0.508
+recv_td_share | TD Share vs. Opportunity | +0.434 | 0.75 | +0.326
+recv_separation | Average Separation | +0.199 | 1.00 | +0.199
+age_curve | Age Curve | -0.047 | 0.75 | -0.035
+SUM(z*w)=+2.573  SUM(w)=10.000  Recalc raw=+0.257
+
+====================================================================================================
+G.Pickens | Team DAL | RecYds 1431 | Targets 138
+Raw composite_z=-0.103 | volume_percentile=0.924 | volume_scalar=0.970
+Adjusted composite_z=-0.099 | sustainability_score=0.796 (sustainable)
+regression_flag=neutral | refined_flag=neutral | displayed_flag=neutral
+
+Metric contributions (sorted by |z*w|):
+metric_id | name | z | weight | z*w
+recv_ypt | Yards Per Target | -1.650 | 1.50 | -2.475
+opportunity_share | Opportunity Share | +1.035 | 1.50 | +1.553
+vol_targets | Targets | +1.460 | 1.00 | +1.460
+recv_yac_oe | YAC Over Expected | -1.422 | 1.00 | -1.422
+recv_catch_rate_oe | Catch Rate Over Expected | -1.286 | 1.00 | -1.286
+recv_separation | Average Separation | +0.953 | 1.00 | +0.953
+recv_target_share | Target Share | +0.308 | 1.50 | +0.462
+recv_td_share | TD Share vs. Opportunity | -0.310 | 0.75 | -0.233
+age_curve | Age Curve | -0.047 | 0.75 | -0.035
+SUM(z*w)=-1.025  SUM(w)=10.000  Recalc raw=-0.103
+
+====================================================================================================
+J.Chase | Team CIN | RecYds 1412 | Targets 185
+Raw composite_z=+0.885 | volume_percentile=1.000 | volume_scalar=1.000
+Adjusted composite_z=+0.885 | sustainability_score=0.891 (sustainable)
+regression_flag=neutral | refined_flag=neutral | displayed_flag=neutral
+
+Metric contributions (sorted by |z*w|):
+metric_id | name | z | weight | z*w
+opportunity_share | Opportunity Share | +2.472 | 1.50 | +3.709
+vol_targets | Targets | +2.724 | 1.00 | +2.724
+recv_target_share | Target Share | +1.447 | 1.50 | +2.171
+recv_ypt | Yards Per Target | +0.536 | 1.50 | +0.805
+recv_separation | Average Separation | -0.549 | 1.00 | -0.549
+recv_td_share | TD Share vs. Opportunity | +0.575 | 0.75 | +0.431
+recv_catch_rate_oe | Catch Rate Over Expected | -0.235 | 1.00 | -0.235
+recv_yac_oe | YAC Over Expected | -0.173 | 1.00 | -0.173
+age_curve | Age Curve | -0.047 | 0.75 | -0.035
+SUM(z*w)=+8.847  SUM(w)=10.000  Recalc raw=+0.885
+
+====================================================================================================
+A.St. Brown | Team DET | RecYds 1412 | Targets 172
+Raw composite_z=+0.846 | volume_percentile=0.989 | volume_scalar=0.996
+Adjusted composite_z=+0.842 | sustainability_score=0.891 (sustainable)
+regression_flag=neutral | refined_flag=neutral | displayed_flag=neutral
+
+Metric contributions (sorted by |z*w|):
+metric_id | name | z | weight | z*w
+opportunity_share | Opportunity Share | +2.881 | 1.50 | +4.322
+vol_targets | Targets | +2.374 | 1.00 | +2.374
+recv_target_share | Target Share | +1.351 | 1.50 | +2.027
+recv_yac_oe | YAC Over Expected | -0.535 | 1.00 | -0.535
+recv_td_share | TD Share vs. Opportunity | +0.385 | 0.75 | +0.289
+recv_ypt | Yards Per Target | +0.076 | 1.50 | +0.113
+recv_separation | Average Separation | -0.089 | 1.00 | -0.089
+age_curve | Age Curve | -0.047 | 0.75 | -0.035
+recv_catch_rate_oe | Catch Rate Over Expected | -0.010 | 1.00 | -0.010
+SUM(z*w)=+8.456  SUM(w)=10.000  Recalc raw=+0.846
+
+====================================================================================================
+Z.Flowers | Team BAL | RecYds 1211 | Targets 119
+Raw composite_z=+0.008 | volume_percentile=0.848 | volume_scalar=0.939
+Adjusted composite_z=+0.008 | sustainability_score=0.822 (sustainable)
+regression_flag=neutral | refined_flag=neutral | displayed_flag=neutral
+
+Metric contributions (sorted by |z*w|):
+metric_id | name | z | weight | z*w
+opportunity_share | Opportunity Share | +2.246 | 1.50 | +3.370
+recv_ypt | Yards Per Target | -1.496 | 1.50 | -2.244
+recv_target_share | Target Share | +1.082 | 1.50 | +1.623
+recv_catch_rate_oe | Catch Rate Over Expected | -1.585 | 1.00 | -1.585
+recv_separation | Average Separation | -1.382 | 1.00 | -1.382
+vol_targets | Targets | +0.948 | 1.00 | +0.948
+recv_td_share | TD Share vs. Opportunity | -0.797 | 0.75 | -0.598
+age_curve | Age Curve | -0.047 | 0.75 | -0.035
+recv_yac_oe | YAC Over Expected | -0.013 | 1.00 | -0.013
+SUM(z*w)=+0.085  SUM(w)=10.000  Recalc raw=+0.008
+
+====================================================================================================
+C.Olave | Team NO | RecYds 1163 | Targets 156
+Raw composite_z=+0.934 | volume_percentile=0.957 | volume_scalar=0.983
+Adjusted composite_z=+0.918 | sustainability_score=0.857 (sustainable)
+regression_flag=neutral | refined_flag=neutral | displayed_flag=neutral
+
+Metric contributions (sorted by |z*w|):
+metric_id | name | z | weight | z*w
+opportunity_share | Opportunity Share | +1.947 | 1.50 | +2.920
+vol_targets | Targets | +1.944 | 1.00 | +1.944
+recv_yac_oe | YAC Over Expected | +1.605 | 1.00 | +1.605
+recv_target_share | Target Share | +1.042 | 1.50 | +1.563
+recv_ypt | Yards Per Target | +0.678 | 1.50 | +1.017
+recv_td_share | TD Share vs. Opportunity | +0.664 | 0.75 | +0.498
+recv_catch_rate_oe | Catch Rate Over Expected | -0.097 | 1.00 | -0.097
+recv_separation | Average Separation | -0.075 | 1.00 | -0.075
+age_curve | Age Curve | -0.047 | 0.75 | -0.035
+SUM(z*w)=+9.340  SUM(w)=10.000  Recalc raw=+0.934
+
+====================================================================================================
+N.Collins | Team HOU | RecYds 1119 | Targets 121
+Raw composite_z=+0.274 | volume_percentile=0.864 | volume_scalar=0.946
+Adjusted composite_z=+0.259 | sustainability_score=0.754 (sustainable)
+regression_flag=neutral | refined_flag=neutral | displayed_flag=neutral
+
+Metric contributions (sorted by |z*w|):
+metric_id | name | z | weight | z*w
+opportunity_share | Opportunity Share | +0.914 | 1.50 | +1.371
+recv_separation | Average Separation | +1.282 | 1.00 | +1.282
+recv_ypt | Yards Per Target | -0.754 | 1.50 | -1.131
+vol_targets | Targets | +1.002 | 1.00 | +1.002
+recv_target_share | Target Share | +0.379 | 1.50 | +0.568
+recv_yac_oe | YAC Over Expected | -0.417 | 1.00 | -0.417
+recv_catch_rate_oe | Catch Rate Over Expected | +0.368 | 1.00 | +0.368
+recv_td_share | TD Share vs. Opportunity | -0.362 | 0.75 | -0.271
+age_curve | Age Curve | -0.047 | 0.75 | -0.035
+SUM(z*w)=+2.737  SUM(w)=10.000  Recalc raw=+0.274
+
+====================================================================================================
+J.Williams | Team DET | RecYds 1109 | Targets 102
+Raw composite_z=-0.482 | volume_percentile=0.745 | volume_scalar=0.898
+Adjusted composite_z=-0.433 | sustainability_score=0.689 (sustainable)
+regression_flag=neutral | refined_flag=neutral | displayed_flag=neutral
+
+Metric contributions (sorted by |z*w|):
+metric_id | name | z | weight | z*w
+recv_ypt | Yards Per Target | -2.052 | 1.50 | -3.078
+recv_yac_oe | YAC Over Expected | -1.782 | 1.00 | -1.782
+opportunity_share | Opportunity Share | +0.742 | 1.50 | +1.113
+recv_target_share | Target Share | -0.359 | 1.50 | -0.539
+vol_targets | Targets | +0.491 | 1.00 | +0.491
+recv_separation | Average Separation | -0.484 | 1.00 | -0.484
+recv_td_share | TD Share vs. Opportunity | -0.635 | 0.75 | -0.476
+age_curve | Age Curve | -0.047 | 0.75 | -0.035
+recv_catch_rate_oe | Catch Rate Over Expected | -0.031 | 1.00 | -0.031
+SUM(z*w)=-4.822  SUM(w)=10.000  Recalc raw=-0.482
+
+====================================================================================================
+C.Lamb | Team DAL | RecYds 1077 | Targets 117
+Raw composite_z=+0.154 | volume_percentile=0.837 | volume_scalar=0.935
+Adjusted composite_z=+0.144 | sustainability_score=0.704 (sustainable)
+regression_flag=neutral | refined_flag=neutral | displayed_flag=neutral
+
+Metric contributions (sorted by |z*w|):
+metric_id | name | z | weight | z*w
+recv_ypt | Yards Per Target | -0.720 | 1.50 | -1.080
+recv_target_share | Target Share | +0.605 | 1.50 | +0.908
+vol_targets | Targets | +0.895 | 1.00 | +0.895
+opportunity_share | Opportunity Share | +0.516 | 1.50 | +0.775
+recv_yac_oe | YAC Over Expected | +0.554 | 1.00 | +0.554
+recv_td_share | TD Share vs. Opportunity | -0.597 | 0.75 | -0.448
+recv_catch_rate_oe | Catch Rate Over Expected | -0.232 | 1.00 | -0.232
+recv_separation | Average Separation | +0.208 | 1.00 | +0.208
+age_curve | Age Curve | -0.047 | 0.75 | -0.035
+SUM(z*w)=+1.544  SUM(w)=10.000  Recalc raw=+0.154

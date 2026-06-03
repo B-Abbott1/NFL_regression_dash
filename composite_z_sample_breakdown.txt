@@ -1,0 +1,1048 @@
+NFL Regression Dashboard — Composite Z-Score Breakdown (Random Sample)
+Scoring version: 7
+Analysis season: 2025
+Regression flag threshold: |composite_z| >= 1.28
+Sample size: 50 (seed=42)
+
+Per-metric Z: (oriented_value - baseline_mean) / baseline_std
+  Performance metrics: baseline = prior-season peak-age cohort at position.
+  Age curve: baseline = prior-season full qualified pool; value = years outside
+    productive window (negative=young, 0=in window, positive=old).
+
+Category weights (METRIC_WEIGHTS / age by position):
+  target_share=1.5, yards_per_target=1.5, process=1.25, td_rate=0.75, default=1.0
+  age_curve: RB=1.0, WR/TE=0.75, QB=0.5
+
+========================================================================================
+Player: A.Rodgers | QB | PIT | Season 2025 | Age 41
+========================================================================================
+Composite Z: +0.3838  (recomputed check: +0.3838)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Pressure Rate                   0.201     0.285   +1.968 default               1.00   +1.9676
+Age Curve                      10.000     0.362   +3.833 age_curve             0.50   +1.9165
+Air Depth of Target             5.686     6.744   -1.190 default               1.00   -1.1900
+Completion % Over Expected     -1.775     0.393   -0.776 process               1.25   -0.9706
+TD Rate vs. Opportunity         0.043     0.043   +0.005 td_rate               0.75   +0.0035
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      +1.7270
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = 1.7270 / 4.5000 = +0.3838
+
+========================================================================================
+Player: B.Cook | QB | NYJ | Season 2025 | Age 23
+========================================================================================
+Composite Z: -1.5612  (recomputed check: -1.5612)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Completion % Over Expected    -10.285     0.393   -3.823 process               1.25   -4.7791
+Air Depth of Target             5.012     6.744   -1.949 default               1.00   -1.9486
+Pressure Rate                   0.219     0.285   +1.548 default               1.00   +1.5483
+TD Rate vs. Opportunity         0.010     0.043   -1.835 td_rate               0.75   -1.3765
+Age Curve                      -2.000     0.362   -0.939 age_curve             0.50   -0.4696
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -7.0256
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = -7.0256 / 4.5000 = -1.5612
+
+========================================================================================
+Player: D.Maye | QB | NE | Season 2025 | Age 23
+========================================================================================
+Composite Z: +0.9555  (recomputed check: +0.9555)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Completion % Over Expected      6.553     0.393   +2.206 process               1.25   +2.7571
+Air Depth of Target             8.320     6.744   +1.772 default               1.00   +1.7722
+Age Curve                      -2.000     0.362   -0.939 age_curve             0.50   -0.4696
+TD Rate vs. Opportunity         0.053     0.043   +0.558 td_rate               0.75   +0.4184
+Pressure Rate                   0.293     0.285   -0.178 default               1.00   -0.1782
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      +4.2999
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = 4.2999 / 4.5000 = +0.9555
+
+========================================================================================
+Player: D.Mills | QB | HOU | Season 2025 | Age 26
+========================================================================================
+Composite Z: +0.2976  (recomputed check: +0.2976)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Air Depth of Target             8.047     6.744   +1.465 default               1.00   +1.4651
+Pressure Rate                   0.232     0.285   +1.249 default               1.00   +1.2487
+Completion % Over Expected     -1.129     0.393   -0.545 process               1.25   -0.6811
+TD Rate vs. Opportunity         0.028     0.043   -0.829 td_rate               0.75   -0.6216
+Age Curve                       0.000     0.362   -0.144 age_curve             0.50   -0.0719
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      +1.3392
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = 1.3392 / 4.5000 = +0.2976
+
+========================================================================================
+Player: G.Smith | QB | LV | Season 2025 | Age 34
+========================================================================================
+Composite Z: -0.2879  (recomputed check: -0.2879)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Air Depth of Target             5.469     6.744   -1.434 default               1.00   -1.4339
+Age Curve                       3.000     0.362   +1.049 age_curve             0.50   +0.5246
+TD Rate vs. Opportunity         0.034     0.043   -0.508 td_rate               0.75   -0.3811
+Pressure Rate                   0.293     0.285   -0.175 default               1.00   -0.1746
+Completion % Over Expected      0.772     0.393   +0.136 process               1.25   +0.1695
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -1.2954
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = -1.2954 / 4.5000 = -0.2879
+
+========================================================================================
+Player: J.Herbert | QB | LAC | Season 2025 | Age 27
+========================================================================================
+Composite Z: +0.0388  (recomputed check: +0.0388)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Pressure Rate                   0.334     0.285   -1.128 default               1.00   -1.1281
+Completion % Over Expected      2.699     0.393   +0.826 process               1.25   +1.0319
+Air Depth of Target             7.087     6.744   +0.385 default               1.00   +0.3847
+Age Curve                       0.000     0.362   -0.144 age_curve             0.50   -0.0719
+TD Rate vs. Opportunity         0.042     0.043   -0.056 td_rate               0.75   -0.0421
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      +0.1746
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = 0.1746 / 4.5000 = +0.0388
+
+========================================================================================
+Player: J.Hurts | QB | PHI | Season 2025 | Age 27
+========================================================================================
+Composite Z: +0.7565  (recomputed check: +0.7565)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Air Depth of Target             8.344     6.744   +1.799 default               1.00   +1.7990
+Completion % Over Expected      2.317     0.393   +0.689 process               1.25   +0.8611
+Pressure Rate                   0.260     0.285   +0.598 default               1.00   +0.5983
+TD Rate vs. Opportunity         0.048     0.043   +0.291 td_rate               0.75   +0.2180
+Age Curve                       0.000     0.362   -0.144 age_curve             0.50   -0.0719
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      +3.4044
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = 3.4044 / 4.5000 = +0.7565
+
+========================================================================================
+Player: J.Love | QB | GB | Season 2025 | Age 26
+========================================================================================
+Composite Z: +0.8803  (recomputed check: +0.8803)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Air Depth of Target             8.379     6.744   +1.838 default               1.00   +1.8379
+Completion % Over Expected      3.906     0.393   +1.258 process               1.25   +1.5722
+Pressure Rate                   0.267     0.285   +0.425 default               1.00   +0.4247
+TD Rate vs. Opportunity         0.048     0.043   +0.265 td_rate               0.75   +0.1986
+Age Curve                       0.000     0.362   -0.144 age_curve             0.50   -0.0719
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      +3.9615
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = 3.9615 / 4.5000 = +0.8803
+
+========================================================================================
+Player: J.McCarthy | QB | MIN | Season 2025 | Age 22
+========================================================================================
+Composite Z: -0.5738  (recomputed check: -0.5738)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Completion % Over Expected     -5.470     0.393   -2.099 process               1.25   -2.6242
+Air Depth of Target             7.846     6.744   +1.239 default               1.00   +1.2389
+Age Curve                      -3.000     0.362   -1.337 age_curve             0.50   -0.6685
+TD Rate vs. Opportunity         0.037     0.043   -0.354 td_rate               0.75   -0.2651
+Pressure Rate                   0.297     0.285   -0.263 default               1.00   -0.2631
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -2.5821
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = -2.5821 / 4.5000 = -0.5738
+
+========================================================================================
+Player: K.Cousins | QB | ATL | Season 2025 | Age 37
+========================================================================================
+Composite Z: -0.1620  (recomputed check: -0.1620)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Age Curve                       6.000     0.362   +2.242 age_curve             0.50   +1.1211
+Pressure Rate                   0.320     0.285   -0.802 default               1.00   -0.8025
+Completion % Over Expected     -0.670     0.393   -0.381 process               1.25   -0.4759
+TD Rate vs. Opportunity         0.034     0.043   -0.523 td_rate               0.75   -0.3920
+Air Depth of Target             6.585     6.744   -0.180 default               1.00   -0.1798
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -0.7290
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = -0.7290 / 4.5000 = -0.1620
+
+========================================================================================
+Player: M.Mariota | QB | WAS | Season 2025 | Age 31
+========================================================================================
+Composite Z: +1.2207  (recomputed check: +1.2207)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Air Depth of Target             9.329     6.744   +2.907 default               1.00   +2.9067
+Completion % Over Expected      5.046     0.393   +1.666 process               1.25   +2.0826
+Pressure Rate                   0.252     0.285   +0.777 default               1.00   +0.7774
+TD Rate vs. Opportunity         0.038     0.043   -0.269 td_rate               0.75   -0.2016
+Age Curve                       0.000     0.362   -0.144 age_curve             0.50   -0.0719
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      +5.4932
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = 5.4932 / 4.5000 = +1.2207
+
+========================================================================================
+Player: T.Lawrence | QB | JAX | Season 2025 | Age 25
+========================================================================================
+Composite Z: +0.2291  (recomputed check: +0.2291)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Air Depth of Target             8.086     6.744   +1.509 default               1.00   +1.5089
+Completion % Over Expected     -2.791     0.393   -1.140 process               1.25   -1.4252
+Pressure Rate                   0.245     0.285   +0.930 default               1.00   +0.9301
+TD Rate vs. Opportunity         0.045     0.043   +0.119 td_rate               0.75   +0.0890
+Age Curve                       0.000     0.362   -0.144 age_curve             0.50   -0.0719
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      +1.0309
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = 1.0309 / 4.5000 = +0.2291
+
+========================================================================================
+Player: A.Jones | RB | MIN | Season 2025 | Age 30
+========================================================================================
+Composite Z: +0.4074  (recomputed check: +0.4074)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Age Curve                       4.000     0.524   +2.101 age_curve             1.00   +2.1011
+Target Share                    0.116     0.090   +0.930 target_share          1.50   +1.3956
+Rushing Yards Over Expected   -33.037    47.333   -0.784 process               1.25   -0.9798
+TD Rate vs. Opportunity         0.015     0.029   -0.912 td_rate               0.75   -0.6837
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      +1.8332
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = 1.8332 / 4.5000 = +0.4074
+
+========================================================================================
+Player: B.Tuten | RB | JAX | Season 2025 | Age 23
+========================================================================================
+Composite Z: -0.4589  (recomputed check: -0.4589)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Target Share                    0.039     0.090   -1.875 target_share          1.50   -2.8120
+TD Rate vs. Opportunity         0.060     0.029   +1.992 td_rate               0.75   +1.4942
+Rushing Yards Over Expected    11.997    47.333   -0.345 process               1.25   -0.4308
+Age Curve                       0.000     0.524   -0.317 age_curve             1.00   -0.3166
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -2.0652
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = -2.0652 / 4.5000 = -0.4589
+
+========================================================================================
+Player: C.McCaffrey | RB | SF | Season 2025 | Age 29
+========================================================================================
+Composite Z: +1.2523  (recomputed check: +1.2523)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Target Share                    0.212     0.090   +4.459 target_share          1.50   +6.6889
+Rushing Yards Over Expected  -174.212    47.333   -2.161 process               1.25   -2.7010
+Age Curve                       3.000     0.524   +1.497 age_curve             1.00   +1.4967
+TD Rate vs. Opportunity         0.032     0.029   +0.201 td_rate               0.75   +0.1508
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      +5.6354
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = 5.6354 / 4.5000 = +1.2523
+
+========================================================================================
+Player: D.Achane | RB | MIA | Season 2025 | Age 23
+========================================================================================
+Composite Z: +1.2617  (recomputed check: +1.2617)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Target Share                    0.169     0.090   +2.860 target_share          1.50   +4.2905
+Rushing Yards Over Expected   168.843    47.333   +1.185 process               1.25   +1.4814
+Age Curve                       0.000     0.524   -0.317 age_curve             1.00   -0.3166
+TD Rate vs. Opportunity         0.034     0.029   +0.297 td_rate               0.75   +0.2225
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      +5.6777
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = 5.6777 / 4.5000 = +1.2617
+
+========================================================================================
+Player: J.Gibbs | RB | DET | Season 2025 | Age 23
+========================================================================================
+Composite Z: +1.2675  (recomputed check: +1.2675)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Target Share                    0.144     0.090   +1.947 target_share          1.50   +2.9203
+Rushing Yards Over Expected   203.307    47.333   +1.521 process               1.25   +1.9016
+TD Rate vs. Opportunity         0.053     0.029   +1.598 td_rate               0.75   +1.1985
+Age Curve                       0.000     0.524   -0.317 age_curve             1.00   -0.3166
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      +5.7037
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = 5.7037 / 4.5000 = +1.2675
+
+========================================================================================
+Player: J.Jacobs | RB | GB | Season 2025 | Age 27
+========================================================================================
+Composite Z: +0.2399  (recomputed check: +0.2399)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+TD Rate vs. Opportunity         0.056     0.029   +1.733 td_rate               0.75   +1.2994
+Rushing Yards Over Expected   -20.760    47.333   -0.664 process               1.25   -0.8301
+Target Share                    0.096     0.090   +0.215 target_share          1.50   +0.3226
+Age Curve                       1.000     0.524   +0.288 age_curve             1.00   +0.2878
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      +1.0797
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = 1.0797 / 4.5000 = +0.2399
+
+========================================================================================
+Player: J.Warren | RB | PIT | Season 2025 | Age 26
+========================================================================================
+Composite Z: +0.3846  (recomputed check: +0.3846)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Rushing Yards Over Expected   180.467    47.333   +1.298 process               1.25   +1.6231
+Target Share                    0.099     0.090   +0.304 target_share          1.50   +0.4557
+Age Curve                       0.000     0.524   -0.317 age_curve             1.00   -0.3166
+TD Rate vs. Opportunity         0.028     0.029   -0.042 td_rate               0.75   -0.0317
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      +1.7306
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = 1.7306 / 4.5000 = +0.3846
+
+========================================================================================
+Player: J.Wright | RB | MIA | Season 2025 | Age 22
+========================================================================================
+Composite Z: -0.6696  (recomputed check: -0.6696)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Target Share                    0.067     0.090   -0.839 target_share          1.50   -1.2587
+Age Curve                      -1.000     0.524   -0.921 age_curve             1.00   -0.9210
+Rushing Yards Over Expected   -18.987    47.333   -0.647 process               1.25   -0.8085
+TD Rate vs. Opportunity         0.029     0.029   -0.033 td_rate               0.75   -0.0250
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -3.0133
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = -3.0133 / 4.5000 = -0.6696
+
+========================================================================================
+Player: N.Chubb | RB | HOU | Season 2025 | Age 29
+========================================================================================
+Composite Z: -0.2326  (recomputed check: -0.2326)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Target Share                    0.049     0.090   -1.528 target_share          1.50   -2.2926
+Age Curve                       3.000     0.524   +1.497 age_curve             1.00   +1.4967
+TD Rate vs. Opportunity         0.025     0.029   -0.294 td_rate               0.75   -0.2204
+Rushing Yards Over Expected    44.851    47.333   -0.024 process               1.25   -0.0302
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -1.0467
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = -1.0467 / 4.5000 = -0.2326
+
+========================================================================================
+Player: O.Gordon | RB | MIA | Season 2025 | Age 21
+========================================================================================
+Composite Z: -0.9882  (recomputed check: -0.9882)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Target Share                    0.034     0.090   -2.046 target_share          1.50   -3.0685
+Age Curve                      -2.000     0.524   -1.525 age_curve             1.00   -1.5254
+TD Rate vs. Opportunity         0.043     0.029   +0.902 td_rate               0.75   +0.6762
+Rushing Yards Over Expected     3.921    47.333   -0.423 process               1.25   -0.5292
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -4.4470
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = -4.4470 / 4.5000 = -0.9882
+
+========================================================================================
+Player: R.Dowdle | RB | CAR | Season 2025 | Age 27
+========================================================================================
+Composite Z: +0.4216  (recomputed check: +0.4216)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Rushing Yards Over Expected   147.216    47.333   +0.974 process               1.25   +1.2177
+Target Share                    0.101     0.090   +0.384 target_share          1.50   +0.5766
+Age Curve                       1.000     0.524   +0.288 age_curve             1.00   +0.2878
+TD Rate vs. Opportunity         0.025     0.029   -0.246 td_rate               0.75   -0.1848
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      +1.8974
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = 1.8974 / 4.5000 = +0.4216
+
+========================================================================================
+Player: R.Harvey | RB | DEN | Season 2025 | Age 24
+========================================================================================
+Composite Z: -0.3037  (recomputed check: -0.3037)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Rushing Yards Over Expected  -120.739    47.333   -1.639 process               1.25   -2.0490
+TD Rate vs. Opportunity         0.048     0.029   +1.213 td_rate               0.75   +0.9099
+Age Curve                       0.000     0.524   -0.317 age_curve             1.00   -0.3166
+Target Share                    0.092     0.090   +0.059 target_share          1.50   +0.0891
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -1.3667
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = -1.3667 / 4.5000 = -0.3037
+
+========================================================================================
+Player: R.Stevenson | RB | NE | Season 2025 | Age 27
+========================================================================================
+Composite Z: +0.3420  (recomputed check: +0.3420)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+TD Rate vs. Opportunity         0.053     0.029   +1.594 td_rate               0.75   +1.1954
+Age Curve                       1.000     0.524   +0.288 age_curve             1.00   +0.2878
+Rushing Yards Over Expected    61.879    47.333   +0.142 process               1.25   +0.1773
+Target Share                    0.088     0.090   -0.081 target_share          1.50   -0.1214
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      +1.5391
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = 1.5391 / 4.5000 = +0.3420
+
+========================================================================================
+Player: T.Tracy | RB | NYG | Season 2025 | Age 25
+========================================================================================
+Composite Z: -0.0879  (recomputed check: -0.0879)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Target Share                    0.107     0.090   +0.590 target_share          1.50   +0.8852
+TD Rate vs. Opportunity         0.011     0.029   -1.160 td_rate               0.75   -0.8696
+Age Curve                       0.000     0.524   -0.317 age_curve             1.00   -0.3166
+Rushing Yards Over Expected    39.578    47.333   -0.076 process               1.25   -0.0945
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -0.3956
+SUM (weights)                                                                          4.5000
+
+COMPOSITE = -0.3956 / 4.5000 = -0.0879
+
+========================================================================================
+Player: C.Kmet | TE | CHI | Season 2025 | Age 26
+========================================================================================
+Composite Z: -0.4606  (recomputed check: -0.4606)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Target Share                    0.086     0.165   -1.806 target_share          1.50   -2.7086
+Average Separation              4.305     3.479   +1.519 process               1.25   +1.8987
+Catch Rate Over Expected       -0.037     0.053   -1.341 process               1.25   -1.6761
+Yards Per Target                7.122     7.664   -0.390 yards_per_target      1.50   -0.5846
+TD Share vs. Opportunity        0.143     0.253   -0.623 td_rate               0.75   -0.4670
+YAC Over Expected              -0.386    -0.166   -0.237 process               1.25   -0.2966
+Age Curve                       0.000    -0.056   +0.046 age_curve             0.75   +0.0342
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -3.8001
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -3.8001 / 8.2500 = -0.4606
+
+========================================================================================
+Player: E.Engram | TE | DEN | Season 2025 | Age 30
+========================================================================================
+Composite Z: -0.2492  (recomputed check: -0.2492)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Average Separation              4.920     3.479   +2.651 process               1.25   +3.3141
+Catch Rate Over Expected       -0.065     0.053   -1.765 process               1.25   -2.2064
+Yards Per Target                5.987     7.664   -1.207 yards_per_target      1.50   -1.8104
+Target Share                    0.126     0.165   -0.888 target_share          1.50   -1.3317
+TD Share vs. Opportunity        0.091     0.253   -0.917 td_rate               0.75   -0.6874
+YAC Over Expected               0.304    -0.166   +0.505 process               1.25   +0.6317
+Age Curve                       0.000    -0.056   +0.046 age_curve             0.75   +0.0342
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -2.0559
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -2.0559 / 8.2500 = -0.2492
+
+========================================================================================
+Player: M.Mayer | TE | LV | Season 2025 | Age 24
+========================================================================================
+Composite Z: -0.5496  (recomputed check: -0.5496)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Catch Rate Over Expected       -0.039     0.053   -1.372 process               1.25   -1.7153
+Target Share                    0.128     0.165   -0.841 target_share          1.50   -1.2612
+Yards Per Target                6.560     7.664   -0.795 yards_per_target      1.50   -1.1918
+Average Separation              3.198     3.479   -0.518 process               1.25   -0.6481
+YAC Over Expected               0.291    -0.166   +0.491 process               1.25   +0.6137
+TD Share vs. Opportunity        0.167     0.253   -0.488 td_rate               0.75   -0.3660
+Age Curve                       0.000    -0.056   +0.046 age_curve             0.75   +0.0342
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -4.5345
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -4.5345 / 8.2500 = -0.5496
+
+========================================================================================
+Player: O.Gadsden | TE | LAC | Season 2025 | Age 22
+========================================================================================
+Composite Z: -0.0815  (recomputed check: -0.0815)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Yards Per Target                9.623     7.664   +1.410 yards_per_target      1.50   +2.1150
+Target Share                    0.123     0.165   -0.960 target_share          1.50   -1.4400
+Age Curve                      -2.000    -0.056   -1.597 age_curve             0.75   -1.1977
+Average Separation              3.193     3.479   -0.527 process               1.25   -0.6593
+YAC Over Expected               0.143    -0.166   +0.332 process               1.25   +0.4147
+Catch Rate Over Expected        0.070     0.053   +0.256 process               1.25   +0.3194
+TD Share vs. Opportunity        0.200     0.253   -0.300 td_rate               0.75   -0.2246
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -0.6726
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -0.6726 / 8.2500 = -0.0815
+
+========================================================================================
+Player: A.Iosivas | WR | CIN | Season 2025 | Age 25
+========================================================================================
+Composite Z: -0.9630  (recomputed check: -0.9630)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Target Share                    0.091     0.191   -1.493 target_share          1.50   -2.2400
+Catch Rate Over Expected       -0.068     0.002   -1.300 process               1.25   -1.6245
+Average Separation              2.310     2.889   -1.117 process               1.25   -1.3957
+YAC Over Expected              -1.375    -0.151   -1.079 process               1.25   -1.3489
+Yards Per Target                7.500     8.304   -0.642 yards_per_target      1.50   -0.9633
+TD Share vs. Opportunity        0.143     0.220   -0.449 td_rate               0.75   -0.3371
+Age Curve                       0.000     0.047   -0.047 age_curve             0.75   -0.0354
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -7.9449
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -7.9449 / 8.2500 = -0.9630
+
+========================================================================================
+Player: C.Austin | WR | PIT | Season 2025 | Age 26
+========================================================================================
+Composite Z: -0.5202  (recomputed check: -0.5202)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Yards Per Target                6.764     8.304   -1.230 yards_per_target      1.50   -1.8456
+Target Share                    0.115     0.191   -1.134 target_share          1.50   -1.7010
+Catch Rate Over Expected       -0.061     0.002   -1.171 process               1.25   -1.4643
+TD Share vs. Opportunity        0.500     0.220   +1.637 td_rate               0.75   +1.2281
+Average Separation              2.771     2.889   -0.227 process               1.25   -0.2839
+YAC Over Expected              -0.323    -0.151   -0.151 process               1.25   -0.1893
+Age Curve                       0.000     0.047   -0.047 age_curve             0.75   -0.0354
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -4.2913
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -4.2913 / 8.2500 = -0.5202
+
+========================================================================================
+Player: C.Godwin | WR | TB | Season 2025 | Age 29
+========================================================================================
+Composite Z: -0.1333  (recomputed check: -0.1333)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+YAC Over Expected               1.694    -0.151   +1.626 process               1.25   +2.0327
+Yards Per Target                6.962     8.304   -1.072 yards_per_target      1.50   -1.6084
+Target Share                    0.163     0.191   -0.415 target_share          1.50   -0.6223
+Catch Rate Over Expected       -0.021     0.002   -0.427 process               1.25   -0.5333
+Average Separation              2.696     2.889   -0.372 process               1.25   -0.4653
+TD Share vs. Opportunity        0.250     0.220   +0.177 td_rate               0.75   +0.1325
+Age Curve                       0.000     0.047   -0.047 age_curve             0.75   -0.0354
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -1.0996
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -1.0996 / 8.2500 = -0.1333
+
+========================================================================================
+Player: D.Mooney | WR | ATL | Season 2025 | Age 27
+========================================================================================
+Composite Z: -1.1053  (recomputed check: -1.1053)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Catch Rate Over Expected       -0.135     0.002   -2.552 process               1.25   -3.1903
+Yards Per Target                6.153     8.304   -1.718 yards_per_target      1.50   -2.5775
+YAC Over Expected              -1.801    -0.151   -1.454 process               1.25   -1.8177
+Target Share                    0.144     0.191   -0.701 target_share          1.50   -1.0518
+TD Share vs. Opportunity        0.000     0.220   -1.284 td_rate               0.75   -0.9632
+Average Separation              3.103     2.889   +0.413 process               1.25   +0.5168
+Age Curve                       0.000     0.047   -0.047 age_curve             0.75   -0.0354
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -9.1191
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -9.1191 / 8.2500 = -1.1053
+
+========================================================================================
+Player: D.Smith | WR | PHI | Season 2025 | Age 26
+========================================================================================
+Composite Z: +0.1869  (recomputed check: +0.1869)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Catch Rate Over Expected        0.065     0.002   +1.182 process               1.25   +1.4779
+YAC Over Expected              -1.183    -0.151   -0.909 process               1.25   -1.1366
+Yards Per Target                8.842     8.304   +0.430 yards_per_target      1.50   +0.6448
+Target Share                    0.215     0.191   +0.368 target_share          1.50   +0.5517
+Average Separation              3.002     2.889   +0.218 process               1.25   +0.2722
+TD Share vs. Opportunity        0.167     0.220   -0.310 td_rate               0.75   -0.2327
+Age Curve                       0.000     0.047   -0.047 age_curve             0.75   -0.0354
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      +1.5418
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = 1.5418 / 8.2500 = +0.1869
+
+========================================================================================
+Player: J.Higgins | WR | HOU | Season 2025 | Age 22
+========================================================================================
+Composite Z: -0.5307  (recomputed check: -0.5307)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Target Share                    0.113     0.191   -1.172 target_share          1.50   -1.7579
+Average Separation              2.380     2.889   -0.983 process               1.25   -1.2282
+TD Share vs. Opportunity        0.444     0.220   +1.313 td_rate               0.75   +0.9846
+Yards Per Target                7.609     8.304   -0.555 yards_per_target      1.50   -0.8330
+Age Curve                      -1.000     0.047   -1.048 age_curve             0.75   -0.7863
+YAC Over Expected              -0.722    -0.151   -0.503 process               1.25   -0.6290
+Catch Rate Over Expected       -0.004     0.002   -0.103 process               1.25   -0.1284
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -4.3781
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -4.3781 / 8.2500 = -0.5307
+
+========================================================================================
+Player: J.Metchie | WR | NYJ | Season 2025 | Age 25
+========================================================================================
+Composite Z: -0.5859  (recomputed check: -0.5859)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Yards Per Target                5.818     8.304   -1.986 yards_per_target      1.50   -2.9784
+Target Share                    0.124     0.191   -1.010 target_share          1.50   -1.5153
+Average Separation              3.438     2.889   +1.060 process               1.25   +1.3248
+YAC Over Expected              -1.227    -0.151   -0.948 process               1.25   -1.1849
+Catch Rate Over Expected       -0.014     0.002   -0.286 process               1.25   -0.3575
+TD Share vs. Opportunity        0.200     0.220   -0.116 td_rate               0.75   -0.0866
+Age Curve                       0.000     0.047   -0.047 age_curve             0.75   -0.0354
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -4.8334
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -4.8334 / 8.2500 = -0.5859
+
+========================================================================================
+Player: J.Meyers | WR | JAX | Season 2025 | Age 28
+========================================================================================
+Composite Z: -0.0493  (recomputed check: -0.0493)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Catch Rate Over Expected        0.031     0.002   +0.545 process               1.25   +0.6817
+YAC Over Expected              -0.654    -0.151   -0.443 process               1.25   -0.5538
+Yards Per Target                7.918     8.304   -0.308 yards_per_target      1.50   -0.4624
+Target Share                    0.208     0.191   +0.262 target_share          1.50   +0.3926
+Average Separation              2.747     2.889   -0.275 process               1.25   -0.3432
+TD Share vs. Opportunity        0.200     0.220   -0.116 td_rate               0.75   -0.0866
+Age Curve                       0.000     0.047   -0.047 age_curve             0.75   -0.0354
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -0.4071
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -0.4071 / 8.2500 = -0.0493
+
+========================================================================================
+Player: J.Meyers | WR | LV | Season 2025 | Age 28
+========================================================================================
+Composite Z: -0.1560  (recomputed check: -0.1560)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Yards Per Target                7.184     8.304   -0.895 yards_per_target      1.50   -1.3423
+Catch Rate Over Expected        0.031     0.002   +0.545 process               1.25   +0.6817
+YAC Over Expected              -0.654    -0.151   -0.443 process               1.25   -0.5538
+Target Share                    0.208     0.191   +0.262 target_share          1.50   +0.3926
+Average Separation              2.747     2.889   -0.275 process               1.25   -0.3432
+TD Share vs. Opportunity        0.200     0.220   -0.116 td_rate               0.75   -0.0866
+Age Curve                       0.000     0.047   -0.047 age_curve             0.75   -0.0354
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -1.2870
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -1.2870 / 8.2500 = -0.1560
+
+========================================================================================
+Player: J.Smith-Schuster | WR | KC | Season 2025 | Age 28
+========================================================================================
+Composite Z: -0.2478  (recomputed check: -0.2478)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Target Share                    0.080     0.191   -1.668 target_share          1.50   -2.5024
+YAC Over Expected               0.934    -0.151   +0.957 process               1.25   +1.1958
+Yards Per Target                7.667     8.304   -0.509 yards_per_target      1.50   -0.7636
+Catch Rate Over Expected        0.029     0.002   +0.517 process               1.25   +0.6468
+TD Share vs. Opportunity        0.111     0.220   -0.635 td_rate               0.75   -0.4762
+Average Separation              2.844     2.889   -0.087 process               1.25   -0.1090
+Age Curve                       0.000     0.047   -0.047 age_curve             0.75   -0.0354
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -2.0440
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -2.0440 / 8.2500 = -0.2478
+
+========================================================================================
+Player: K.Bourne | WR | SF | Season 2025 | Age 30
+========================================================================================
+Composite Z: +0.1194  (recomputed check: +0.1194)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Yards Per Target               10.396     8.304   +1.671 yards_per_target      1.50   +2.5069
+Target Share                    0.097     0.191   -1.413 target_share          1.50   -2.1201
+Catch Rate Over Expected        0.062     0.002   +1.130 process               1.25   +1.4126
+TD Share vs. Opportunity        0.000     0.220   -1.284 td_rate               0.75   -0.9632
+Average Separation              2.521     2.889   -0.710 process               1.25   -0.8876
+Age Curve                       1.000     0.047   +0.954 age_curve             0.75   +0.7154
+YAC Over Expected               0.140    -0.151   +0.257 process               1.25   +0.3209
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      +0.9850
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = 0.9850 / 8.2500 = +0.1194
+
+========================================================================================
+Player: M.Evans | WR | TB | Season 2025 | Age 32
+========================================================================================
+Composite Z: -0.8559  (recomputed check: -0.8559)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+YAC Over Expected              -2.764    -0.151   -2.303 process               1.25   -2.8789
+Yards Per Target                5.935     8.304   -1.892 yards_per_target      1.50   -2.8378
+Catch Rate Over Expected       -0.103     0.002   -1.952 process               1.25   -2.4394
+Age Curve                       3.000     0.047   +2.956 age_curve             0.75   +2.2171
+Average Separation              1.982     2.889   -1.749 process               1.25   -2.1866
+Target Share                    0.216     0.191   +0.378 target_share          1.50   +0.5667
+TD Share vs. Opportunity        0.333     0.220   +0.664 td_rate               0.75   +0.4977
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -7.0612
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -7.0612 / 8.2500 = -0.8559
+
+========================================================================================
+Player: M.Hollins | WR | NE | Season 2025 | Age 31
+========================================================================================
+Composite Z: +0.1657  (recomputed check: +0.1657)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Catch Rate Over Expected        0.100     0.002   +1.836 process               1.25   +2.2955
+YAC Over Expected              -1.668    -0.151   -1.337 process               1.25   -1.6717
+Age Curve                       2.000     0.047   +1.955 age_curve             0.75   +1.4663
+Target Share                    0.141     0.191   -0.752 target_share          1.50   -1.1286
+TD Share vs. Opportunity        0.400     0.220   +1.053 td_rate               0.75   +0.7899
+Average Separation              2.651     2.889   -0.458 process               1.25   -0.5729
+Yards Per Target                8.462     8.304   +0.126 yards_per_target      1.50   +0.1888
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      +1.3673
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = 1.3673 / 8.2500 = +0.1657
+
+========================================================================================
+Player: M.Washington | WR | MIA | Season 2025 | Age 24
+========================================================================================
+Composite Z: -0.3420  (recomputed check: -0.3420)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Yards Per Target                4.985     8.304   -2.651 yards_per_target      1.50   -3.9771
+Average Separation              4.037     2.889   +2.214 process               1.25   +2.7676
+Target Share                    0.128     0.191   -0.940 target_share          1.50   -1.4096
+YAC Over Expected              -0.681    -0.151   -0.467 process               1.25   -0.5836
+TD Share vs. Opportunity        0.273     0.220   +0.309 td_rate               0.75   +0.2321
+Catch Rate Over Expected        0.009     0.002   +0.148 process               1.25   +0.1849
+Age Curve                       0.000     0.047   -0.047 age_curve             0.75   -0.0354
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -2.8212
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -2.8212 / 8.2500 = -0.3420
+
+========================================================================================
+Player: R.Shaheed | WR | NO | Season 2025 | Age 27
+========================================================================================
+Composite Z: -0.5752  (recomputed check: -0.5752)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+YAC Over Expected              -1.969    -0.151   -1.602 process               1.25   -2.0027
+Target Share                    0.145     0.191   -0.684 target_share          1.50   -1.0266
+Yards Per Target                7.561     8.304   -0.594 yards_per_target      1.50   -0.8907
+TD Share vs. Opportunity        0.111     0.220   -0.635 td_rate               0.75   -0.4762
+Average Separation              2.754     2.889   -0.261 process               1.25   -0.3265
+Age Curve                       0.000     0.047   -0.047 age_curve             0.75   -0.0354
+Catch Rate Over Expected        0.002     0.002   +0.010 process               1.25   +0.0124
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -4.7457
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -4.7457 / 8.2500 = -0.5752
+
+========================================================================================
+Player: T.Franklin | WR | DEN | Season 2025 | Age 22
+========================================================================================
+Composite Z: -0.4855  (recomputed check: -0.4855)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Yards Per Target                6.682     8.304   -1.295 yards_per_target      1.50   -1.9431
+YAC Over Expected              -1.053    -0.151   -0.795 process               1.25   -0.9936
+Age Curve                      -1.000     0.047   -1.048 age_curve             0.75   -0.7863
+Target Share                    0.170     0.191   -0.308 target_share          1.50   -0.4613
+Catch Rate Over Expected        0.012     0.002   +0.198 process               1.25   +0.2480
+TD Share vs. Opportunity        0.190     0.220   -0.171 td_rate               0.75   -0.1284
+Average Separation              2.914     2.889   +0.047 process               1.25   +0.0591
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -4.0055
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -4.0055 / 8.2500 = -0.4855
+
+========================================================================================
+Player: T.Harris | WR | LAC | Season 2025 | Age 23
+========================================================================================
+Composite Z: -0.7122  (recomputed check: -0.7122)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Target Share                    0.079     0.191   -1.688 target_share          1.50   -2.5323
+Average Separation              1.924     2.889   -1.861 process               1.25   -2.3263
+Yards Per Target                7.535     8.304   -0.614 yards_per_target      1.50   -0.9215
+Catch Rate Over Expected        0.029     0.002   +0.504 process               1.25   +0.6295
+YAC Over Expected              -0.699    -0.151   -0.482 process               1.25   -0.6031
+TD Share vs. Opportunity        0.200     0.220   -0.116 td_rate               0.75   -0.0866
+Age Curve                       0.000     0.047   -0.047 age_curve             0.75   -0.0354
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -5.8757
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -5.8757 / 8.2500 = -0.7122
+
+========================================================================================
+Player: T.Higgins | WR | CIN | Season 2025 | Age 26
+========================================================================================
+Composite Z: -0.3403  (recomputed check: -0.3403)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Average Separation              1.819     2.889   -2.064 process               1.25   -2.5797
+YAC Over Expected              -1.038    -0.151   -0.782 process               1.25   -0.9772
+Catch Rate Over Expected        0.030     0.002   +0.528 process               1.25   +0.6604
+Target Share                    0.164     0.191   -0.400 target_share          1.50   -0.5998
+Yards Per Target                8.798     8.304   +0.395 yards_per_target      1.50   +0.5919
+TD Share vs. Opportunity        0.250     0.220   +0.177 td_rate               0.75   +0.1325
+Age Curve                       0.000     0.047   -0.047 age_curve             0.75   -0.0354
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -2.8073
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -2.8073 / 8.2500 = -0.3403
+
+========================================================================================
+Player: X.Legette | WR | CAR | Season 2025 | Age 24
+========================================================================================
+Composite Z: -1.3123  (recomputed check: -1.3123)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Yards Per Target                5.672     8.304   -2.102 yards_per_target      1.50   -3.1537
+YAC Over Expected              -2.960    -0.151   -2.475 process               1.25   -3.0943
+Catch Rate Over Expected       -0.080     0.002   -1.518 process               1.25   -1.8969
+Target Share                    0.124     0.191   -0.996 target_share          1.50   -1.4936
+Average Separation              2.507     2.889   -0.736 process               1.25   -0.9201
+TD Share vs. Opportunity        0.167     0.220   -0.310 td_rate               0.75   -0.2327
+Age Curve                       0.000     0.047   -0.047 age_curve             0.75   -0.0354
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                     -10.8267
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -10.8267 / 8.2500 = -1.3123
+
+========================================================================================
+Player: X.Worthy | WR | KC | Season 2025 | Age 22
+========================================================================================
+Composite Z: -0.4410  (recomputed check: -0.4410)
+
+Formula:  composite_z = sum(z_i * weight_i) / sum(weight_i)
+
+Metric                          Value  Expected        Z WtCat               Weight       Z*W
+---------------------------------------------------------------------------------------------
+Average Separation              3.648     2.889   +1.463 process               1.25   +1.8292
+YAC Over Expected              -1.274    -0.151   -0.989 process               1.25   -1.2368
+Yards Per Target                7.288     8.304   -0.812 yards_per_target      1.50   -1.2177
+Target Share                    0.139     0.191   -0.784 target_share          1.50   -1.1754
+Catch Rate Over Expected       -0.034     0.002   -0.655 process               1.25   -0.8185
+Age Curve                      -1.000     0.047   -1.048 age_curve             0.75   -0.7863
+TD Share vs. Opportunity        0.167     0.220   -0.310 td_rate               0.75   -0.2327
+---------------------------------------------------------------------------------------------
+SUM (z * weight)                                                                      -3.6382
+SUM (weights)                                                                          8.2500
+
+COMPOSITE = -3.6382 / 8.2500 = -0.4410

@@ -1,0 +1,13 @@
+# Python 3.13: use numpy>=2.0 (1.26.x has no wheels and builds from source).
+# nfl-data-py declares numpy<2 / pandas<2 but works with 2.x — install via install.ps1.
+dash>=2.14.0
+dash-bootstrap-components>=1.5.0
+plotly>=5.18.0
+pandas>=2.0.0
+numpy>=2.0.0
+pyarrow>=14.0.0
+appdirs>=1.4.0
+fastparquet>=2024.0.0
+
+# Optional: only needed when using scipy.stats in calculator (not used yet).
+# scipy>=1.15.3
