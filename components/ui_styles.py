@@ -8,6 +8,9 @@ from dash import dash_table, html
 import config
 from components.team_logos import TEAM_LOGO_CELL_STYLES, TEAM_LOGO_SIZE_PX
 
+# Must match make_data_table page_size (active_cell row is page-local when paginated).
+TABLE_PAGE_SIZE = 25
+
 # Readable on dark surfaces — flag column uses accent text, not full-row tint
 TABLE_STYLE_HEADER = {
     "backgroundColor": "#21262d",
@@ -128,7 +131,7 @@ def make_data_table(
         "sort_action": "native",
         "filter_action": filter_action,
         "page_action": "native",
-        "page_size": 25,
+        "page_size": TABLE_PAGE_SIZE,
         "markdown_options": {"html": True, "link_target": "_self"},
         "style_table": {"overflowX": "auto", "borderRadius": "8px"},
         "style_header": TABLE_STYLE_HEADER,

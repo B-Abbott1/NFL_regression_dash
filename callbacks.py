@@ -19,6 +19,7 @@ from components.player_detail import (
     headshot_url_for_player,
 )
 from components.team_logos import table_records_with_logos
+from components.ui_styles import TABLE_PAGE_SIZE
 from metrics.calculator import (
     apply_leaderboard_metric_view,
     build_player_insight,
@@ -47,6 +48,38 @@ def _table_columns(df: pd.DataFrame, base: list[str]) -> list[str]:
     """Merge base display columns with any volume stats present in the frame."""
     extra = [c for c in config.VOLUME_STAT_FIELDS if c in df.columns]
     return [c for c in base + extra if c in df.columns]
+
+
+def _table_export_cols(df: pd.DataFrame, display_cols: list[str]) -> list[str]:
+    """Visible columns plus hidden ids needed for player drill-down."""
+    return list(
+        dict.fromkeys(
+            display_cols
+            + [c for c in config.LEADERBOARD_ROW_HIDDEN_FIELDS if c in df.columns]
+        )
+    )
+
+
+def _triggered_table_id() -> str | None:
+    """Component id for the Input that fired (e.g. leaderboard-table)."""
+    if not ctx.triggered:
+        return None
+    prop_id = ctx.triggered[0].get("prop_id", "")
+    return prop_id.split(".")[0] if prop_id else None
+
+
+def _row_index_from_active_cell(
+    active_cell: dict,
+    page_current: int | None,
+    *,
+    page_size: int = TABLE_PAGE_SIZE,
+) -> int:
+    """Map DataTable active_cell row to index in full data (paginated tables)."""
+    row = active_cell.get("row")
+    if row is None:
+        return -1
+    page = page_current if page_current is not None else 0
+    return int(row) + int(page) * page_size
 
 
 def _volume_stats_panel(row: pd.Series) -> html.Div:
@@ -92,22 +125,25 @@ def _prepare_leaderboard_df(df_metrics: pd.DataFrame) -> pd.DataFrame:
 
 
 def _resolve_player_row(table_row: pd.Series, df_metrics: pd.DataFrame) -> pd.Series:
-    """Merge leaderboard table row with full metrics (table omits most metric columns)."""
+    """Merge table row with full metrics using player_id when possible."""
     if df_metrics is None or df_metrics.empty:
         return table_row
 
-    if table_row.get("player_id"):
-        match = df_metrics[df_metrics["player_id"] == table_row["player_id"]]
+    player_id = table_row.get("player_id")
+    if player_id and pd.notna(player_id):
+        match = df_metrics[df_metrics["player_id"] == player_id]
         if not match.empty:
             return match.iloc[0]
 
     name = table_row.get("player_name")
-    team = table_row.get("team")
+    team = table_row.get("team") or table_row.get("projected_team")
     if name:
         match = df_metrics[df_metrics["player_name"] == name]
         if team and "team" in match.columns:
-            match = match[match["team"] == team]
-        if not match.empty:
+            team_match = match[match["team"] == team]
+            if not team_match.empty:
+                return team_match.iloc[0]
+        if len(match) == 1:
             return match.iloc[0]
 
     return table_row
@@ -269,6 +305,16 @@ def register_callbacks(app, raw_data: dict) -> None:
             return styles + actives
 
     @callback(
+        [Output(f"{table_id}", "active_cell") for table_id in _PLAYER_DETAIL_TABLES],
+        Output("player-detail-panel", "is_open", allow_duplicate=True),
+        [Input(nav_id, "n_clicks") for nav_id in _NAV_IDS],
+        prevent_initial_call=True,
+    )
+    def clear_player_detail_on_nav(*_):
+        """Drop stale table selection when switching tabs (avoids wrong player on next click)."""
+        return [None] * len(_PLAYER_DETAIL_TABLES) + [False]
+
+    @callback(
         Output("outlook-2026-table", "data"),
         Output("outlook-2026-status", "children"),
         Output("outlook-2026-status", "is_open"),
@@ -304,10 +350,11 @@ def register_callbacks(app, raw_data: dict) -> None:
                     "flag_label",
                 ],
             )
+            export_cols = _table_export_cols(df_outlook_2026, display_cols)
             return (
                 table_records_with_logos(
                     df_outlook_2026,
-                    display_cols,
+                    export_cols,
                     team_col="projected_team",
                 ),
                 "",
@@ -412,15 +459,7 @@ def register_callbacks(app, raw_data: dict) -> None:
                 config.ANALYSIS_SEASON,
             )
             export_cols = list(
-                dict.fromkeys(
-                    ["team_logo"]
-                    + col_ids
-                    + [
-                        c
-                        for c in config.LEADERBOARD_ROW_HIDDEN_FIELDS
-                        if c in filtered.columns
-                    ]
-                )
+                dict.fromkeys(["team_logo"] + _table_export_cols(filtered, col_ids))
             )
             records = (
                 table_records_with_logos(filtered, export_cols, team_col="team")
@@ -441,7 +480,7 @@ def register_callbacks(app, raw_data: dict) -> None:
             )
 
     @callback(
-        Output("player-detail-panel", "is_open"),
+        Output("player-detail-panel", "is_open", allow_duplicate=True),
         Output("player-detail-header", "children"),
         Output("player-insight-text", "children"),
         Output("player-trend-chart", "figure"),
@@ -451,6 +490,7 @@ def register_callbacks(app, raw_data: dict) -> None:
         Output("player-metrics-panel", "children"),
         [Input(f"{table_id}", "active_cell") for table_id in _PLAYER_DETAIL_TABLES],
         [State(f"{table_id}", "data") for table_id in _PLAYER_DETAIL_TABLES],
+        [State(f"{table_id}", "page_current") for table_id in _PLAYER_DETAIL_TABLES],
         State("metrics-store", "data"),
         prevent_initial_call=True,
     )
@@ -459,24 +499,26 @@ def register_callbacks(app, raw_data: dict) -> None:
             session = args[-1]
             table_args = args[:-1]
             df_metrics = session_metrics(session)
-            triggered = ctx.triggered_id
+            triggered = _triggered_table_id()
             if triggered not in _PLAYER_DETAIL_TABLES:
                 return (no_update,) * 8
 
             n_tables = len(_PLAYER_DETAIL_TABLES)
             active_cells = table_args[:n_tables]
-            table_datas = table_args[n_tables:]
+            table_datas = table_args[n_tables : 2 * n_tables]
+            page_currents = table_args[2 * n_tables :]
             table_index = _PLAYER_DETAIL_TABLES.index(triggered)
             active_cell = active_cells[table_index]
             table_data = table_datas[table_index]
+            page_current = page_currents[table_index]
 
             if not active_cell or active_cell.get("column_id") != "player_name":
                 return (no_update,) * 8
             if not table_data:
                 return (False,) + (no_update,) * 7
 
-            row_idx = active_cell.get("row")
-            if row_idx is None or row_idx < 0 or row_idx >= len(table_data):
+            row_idx = _row_index_from_active_cell(active_cell, page_current)
+            if row_idx < 0 or row_idx >= len(table_data):
                 return (no_update,) * 8
 
             table_row = pd.Series(table_data[row_idx])
