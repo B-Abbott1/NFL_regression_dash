@@ -17,7 +17,7 @@ WEEKLY_OFFICIAL_MAX_SEASON = 2024
 
 PBP_REQUIRED_COLS = ("season", "week", "posteam", "pass_attempt")
 # Present in config.PBP_COLUMNS; stale caches built without these break QB INT stats.
-PBP_CACHE_STAT_COLS = ("interception",)
+PBP_CACHE_STAT_COLS = ("interception", "epa")
 WEEKLY_REQUIRED_COLS = ("player_id", "season", "week", "position")
 
 
@@ -77,6 +77,18 @@ def _read_cache_if_valid(
     logger.warning("Removing invalid cache file %s", path.name)
     path.unlink(missing_ok=True)
     return None
+
+
+def _derived_weekly_missing_passing_epa(df: pd.DataFrame) -> bool:
+    """True when PBP-derived weekly has QB pass volume but no passing_epa."""
+    if df.empty or "passing_epa" not in df.columns:
+        return True
+    qb = df[df.get("position") == "QB"]
+    if qb.empty:
+        return False
+    epa = qb["passing_epa"].fillna(0).sum()
+    att = qb["attempts"].fillna(0).sum() if "attempts" in qb.columns else 0
+    return epa == 0 and att > 0
 
 
 def _derived_weekly_missing_interceptions(df: pd.DataFrame) -> bool:
@@ -245,6 +257,15 @@ def derive_weekly_from_pbp(
         pass_df = pass_df.copy()
         pass_df["_is_int"] = pbp_pass_interception_mask(pass_df).astype(int)
         pass_agg["interceptions"] = ("_is_int", "sum")
+    if "epa" in pass_df.columns:
+        pass_df = pass_df.copy()
+        is_dropback = (pass_df["pass_attempt"] == 1) | (pass_df["sack"] == 1)
+        pass_df["_dropback_epa"] = np.where(is_dropback, pass_df["epa"], np.nan)
+        pass_agg["passing_epa"] = ("_dropback_epa", "sum")
+    if "sack" in pass_df.columns:
+        pass_df = pass_df.copy()
+        pass_df["_is_sack"] = pass_df["sack"].fillna(0).astype(int)
+        pass_agg["sacks"] = ("_is_sack", "sum")
     pass_stats = (
         pass_df.groupby(
             ["season", "week", "passer_player_id", "passer_player_name", "posteam"],
@@ -259,6 +280,15 @@ def derive_weekly_from_pbp(
             }
         )
     )
+    sack_plays = pbp[(pbp["passer_player_id"].notna()) & (pbp["sack"] == 1)]
+    if not sack_plays.empty and "yards_gained" in sack_plays.columns:
+        sack_yds = (
+            sack_plays.groupby(["season", "week", "passer_player_id"], as_index=False)["yards_gained"]
+            .sum()
+            .rename(columns={"passer_player_id": "player_id", "yards_gained": "sack_yards"})
+        )
+        sack_yds["sack_yards"] = sack_yds["sack_yards"].abs()
+        pass_stats = pass_stats.merge(sack_yds, on=["season", "week", "player_id"], how="left")
     df_weekly = pd.concat([recv_stats, rush_stats, pass_stats], ignore_index=True)
 
     if df_rosters is not None and not df_rosters.empty:
@@ -282,8 +312,9 @@ def derive_weekly_from_pbp(
         np.nan,
     )
     for col in ("completions", "attempts", "passing_yards", "passing_tds", "interceptions",
-                "carries", "rushing_yards", "rushing_tds", "receptions", "targets",
-                "receiving_yards", "receiving_tds", "air_yards_share", "wopr", "racr"):
+                "passing_epa", "sacks", "sack_yards", "carries", "rushing_yards", "rushing_tds",
+                "receptions", "targets", "receiving_yards", "receiving_tds", "air_yards_share",
+                "wopr", "racr"):
         if col not in df_weekly.columns:
             df_weekly[col] = np.nan
 
@@ -303,6 +334,12 @@ def load_weekly_data(years: list[int] | None = None, force_refresh: bool = False
                 if _derived_weekly_missing_interceptions(cached):
                     logger.warning(
                         "Removing stale weekly cache (missing INTs) %s", path.name
+                    )
+                    path.unlink(missing_ok=True)
+                    cached = None
+                elif _derived_weekly_missing_passing_epa(cached):
+                    logger.warning(
+                        "Removing stale weekly cache (missing passing_epa) %s", path.name
                     )
                     path.unlink(missing_ok=True)
                     cached = None
@@ -446,6 +483,10 @@ def load_metrics_computed() -> pd.DataFrame | None:
     if not qb.empty and "interceptions" in qb.columns:
         att = qb.get("pass_attempts", qb.get("attempts", pd.Series(dtype=float))).fillna(0)
         if qb["interceptions"].fillna(0).max() == 0 and att.max() > 0:
+            return None
+    if not qb.empty and "qb_epa_per_play_value" in qb.columns:
+        att = qb.get("dropbacks", qb.get("pass_attempts", pd.Series(dtype=float))).fillna(0)
+        if qb["qb_epa_per_play_value"].notna().sum() == 0 and att.max() > 0:
             return None
     return df
 

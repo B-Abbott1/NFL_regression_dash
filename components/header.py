@@ -69,7 +69,7 @@ def build_header() -> dbc.Navbar:
                                         outline=True,
                                         size="sm",
                                         className="ms-2 refresh-flags-btn",
-                                        title="Re-apply tags from current config.py cutoffs (fast; use after editing TAG_* constants)",
+                                        title="Re-apply tags from config TAG_*_PCT rules (fast; use after editing New_scoring thresholds)",
                                     ),
                                 ],
                             )

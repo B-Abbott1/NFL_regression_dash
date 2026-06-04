@@ -56,7 +56,7 @@ def pack_session(
         "team": pack_dataframe(team),
         "updated_at": datetime.now(timezone.utc).isoformat(),
         "scoring_version": config.METRICS_SCORING_VERSION,
-        "tag_axis_high_z": config.TAG_AXIS_HIGH_Z,
+        "tag_scoring": "percentile_v14",
         "metrics_rows": len(metrics) if metrics is not None and not metrics.empty else 0,
         "outlook_rows": len(outlook) if outlook is not None and not outlook.empty else 0,
     }
@@ -120,5 +120,4 @@ def format_updated_label(session: dict | None) -> str:
         stamp = str(session.get("updated_at", ""))[:19]
     rows = session.get("metrics_rows", 0)
     ver = session.get("scoring_version", "?")
-    tag_z = session.get("tag_axis_high_z", "?")
-    return f" · Updated {stamp} ({rows} players, v{ver}, tag high z={tag_z})"
+    return f" · Updated {stamp} ({rows} players, scoring v{ver})"

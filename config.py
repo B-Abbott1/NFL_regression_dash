@@ -11,7 +11,7 @@ CURRENT_SEASON = ANALYSIS_SEASON
 BASELINE_SEASONS = [2023, 2024]
 
 # Z-scores: peak-age cohort mean/std (prior season) + age curve in composite.
-METRICS_SCORING_VERSION = 13
+METRICS_SCORING_VERSION = 16
 
 # Prime-age windows for baseline cohort (inclusive). Peak = reference mean for z-scores.
 POSITION_PEAK_AGE: dict[str, dict[str, int]] = {
@@ -31,44 +31,33 @@ ROOT_DIR = Path(__file__).resolve().parent
 DATA_DIR = ROOT_DIR / "data"
 CACHE_MAX_AGE_DAYS = 7
 
-# --- Regression thresholds ---
-REGRESSION_Z_THRESHOLD = 1.28  # legacy single-metric view only
+# --- Player tags (within-position axis percentiles; see New_scoring.txt) ---
+# Percentiles are cohort ranks of Pz/Rz/Ez among qualified players at each position.
+TAG_BREAKOUT_MAX_ROLE_PCT = 50.0
+TAG_EFF_PCT_HIGH = 85.0
 
-# --- v12 tag cutoffs (role_z / efficiency_z / production_z axes) ---
-# "High" / "low" on an axis = at or above / at or below these z values.
+TAG_POSITIVE_OUTLOOK_MIN_ROLE_PCT = 50.0
+
+TAG_STAR_MIN_PROD_PCT = 90.0
+TAG_STAR_MIN_EFF_PCT = TAG_EFF_PCT_HIGH
+
+TAG_REGRESS_MIN_PROD_PCT = 60.0
+TAG_REGRESS_MIN_ROLE_PCT = 60.0
+TAG_REGRESS_MAX_EFF_PCT = 35.0
+
+# Legacy z thresholds (meta strip / old docs only)
+REGRESSION_Z_THRESHOLD = 1.28
 TAG_AXIS_HIGH_Z = 1.0
-TAG_AXIS_LOW_Z = -0.5
-TAG_Z_THRESHOLD = TAG_AXIS_HIGH_Z  # alias used in docs
-
-# star: production + efficiency both strong (no age gate)
-TAG_STAR_MIN_PRODUCTION_Z = TAG_AXIS_HIGH_Z
-TAG_STAR_MIN_EFFICIENCY_Z = TAG_AXIS_HIGH_Z
-
-# regress_negative: lucky box score, usage without results, or TD luck
-TAG_REGRESS_MIN_PRODUCTION_Z = TAG_AXIS_HIGH_Z
-TAG_REGRESS_MAX_EFFICIENCY_Z = TAG_AXIS_LOW_Z
-TAG_REGRESS_MIN_ROLE_Z = TAG_AXIS_HIGH_Z
-TAG_REGRESS_MAX_PRODUCTION_Z = TAG_AXIS_LOW_Z
-TAG_TD_LUCK_MAX_EFFICIENCY_Z = 0.0  # td-luck path only if eff_z <= this
-TAG_TD_LUCK_MIN_TD_RATE_Z = TAG_AXIS_HIGH_Z
-
-# breakout: efficient but low role; must meet qualify_* volume mins (no age gate)
-TAG_BREAKOUT_MAX_ROLE_Z = TAG_AXIS_LOW_Z
-TAG_BREAKOUT_MIN_EFFICIENCY_Z = TAG_AXIS_HIGH_Z
+TAG_Z_THRESHOLD = TAG_AXIS_HIGH_Z
 
 # Added to efficiency_z: young (below productive window) boosts, older players penalized.
-# Uses signed age_curve_value (negative = young, positive = past productive max).
 EFFICIENCY_AGE_Z_PER_YEAR = 0.25
-
-# positive_outlook: low production, strong efficiency
-TAG_OUTLOOK_MAX_PRODUCTION_Z = TAG_AXIS_LOW_Z
-TAG_OUTLOOK_MIN_EFFICIENCY_Z = TAG_AXIS_HIGH_Z
 
 # v12: three-axis scoring (see Math.txt). Each list is metric IDs averaged into that score.
 SCORE_METRICS: dict[str, dict[str, list[str]]] = {
     "QB": {
         "role": ["vol_dropbacks"],
-        "efficiency": ["qb_cpoe", "qb_epa_per_play"],
+        "efficiency": ["qb_cpoe", "qb_epa_per_play", "qb_passer_rating", "qb_anya"],
         # Yards + TDs only; INT z was compressing elite volume QBs (~1.0 prod z → ~85th norm pct).
         "production": ["vol_pass_yds", "vol_pass_tds"],
         "td_luck": ["qb_td_rate"],
@@ -137,10 +126,10 @@ PLAYER_FLAG_KEYS = (
 )
 
 FLAG_LABELS = {
-    "star": "Star (prod + efficiency)",
+    "star": "Star (Pz & Ez elite)",
     "regress_negative": "Negative regression risk",
-    "breakout": "Breakout (low role, high efficiency)",
-    "positive_outlook": "Positive outlook (low prod, high efficiency)",
+    "breakout": "Breakout (low Rz, high Ez)",
+    "positive_outlook": "Pos outlook (Rz & Ez)",
     "neutral": "Neutral",
 }
 
@@ -154,7 +143,7 @@ FLAG_LEGEND_LABELS = {
 }
 
 FLAG_COLORS = {
-    "star": "#1f6feb",
+    "star": "#e3b341",
     "regress_negative": "#f85149",
     "breakout": "#3fb950",
     "positive_outlook": "#58a6ff",
@@ -288,6 +277,9 @@ LEADERBOARD_ROW_HIDDEN_FIELDS = [
     "efficiency_z_raw",
     "efficiency_age_z_adjustment",
     "production_z",
+    "role_pct",
+    "efficiency_pct",
+    "production_pct",
     "flag",
     "focus_metric",
 ]
@@ -425,6 +417,20 @@ METRIC_DEFINITIONS = {
         },
         "qb_epa_per_play": {
             "name": "EPA per Play",
+            "weight_category": "process",
+            "include_in_composite": True,
+            "pushes_toward_lower_z": False,
+            "primary": False,
+        },
+        "qb_passer_rating": {
+            "name": "Passer Rating (NGS)",
+            "weight_category": "process",
+            "include_in_composite": True,
+            "pushes_toward_lower_z": False,
+            "primary": False,
+        },
+        "qb_anya": {
+            "name": "ANY/A",
             "weight_category": "process",
             "include_in_composite": True,
             "pushes_toward_lower_z": False,
@@ -911,4 +917,7 @@ WEEKLY_COLUMNS = [
     "air_yards_share",
     "wopr",
     "racr",
+    "passing_epa",
+    "sacks",
+    "sack_yards",
 ]

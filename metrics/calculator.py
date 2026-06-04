@@ -321,89 +321,82 @@ def compute_axis_scores(
     }
 
 
-def _td_luck_triggered(
-    row: pd.Series,
-    position: str,
-    prod_z: float,
-    eff_z: float,
-) -> bool:
-    """High production with elevated TD-rate z and weak efficiency."""
-    if not _tag_axis_ge(prod_z, config.TAG_REGRESS_MIN_PRODUCTION_Z):
+def _tag_pct_gt(pct: float, threshold: float) -> bool:
+    """Percentile strictly above threshold."""
+    if pct is None or pd.isna(pct):
         return False
-    if not _tag_axis_le(eff_z, config.TAG_TD_LUCK_MAX_EFFICIENCY_Z):
+    return float(pct) > float(threshold)
+
+
+def _tag_pct_lt(pct: float, threshold: float) -> bool:
+    """Percentile strictly below threshold."""
+    if pct is None or pd.isna(pct):
         return False
-    for mid in config.td_luck_metric_ids(position):
-        z = row.get(f"{mid}_z", np.nan)
-        if pd.notna(z) and _tag_axis_ge(float(z), config.TAG_TD_LUCK_MIN_TD_RATE_Z):
-            return True
-    return False
+    return float(pct) < float(threshold)
 
 
-def _tag_axis_ge(z: float, cutoff: float) -> bool:
-    """Axis z at or above cutoff (tolerant of float rounding from JSON/store round-trip)."""
-    return float(z) >= float(cutoff) - 1e-6
-
-
-def _tag_axis_le(z: float, cutoff: float) -> bool:
-    return float(z) <= float(cutoff) + 1e-6
+def _attach_axis_percentiles_for_tags(df: pd.DataFrame) -> pd.DataFrame:
+    """Within-position percentile ranks of Rz, Ez, Pz for tag assignment."""
+    out = df.copy()
+    for z_col, pct_col in (
+        ("role_z", "role_pct"),
+        ("efficiency_z", "efficiency_pct"),
+        ("production_z", "production_pct"),
+    ):
+        out[pct_col] = position_cohort_percentile(
+            pd.to_numeric(out.get(z_col), errors="coerce"),
+            out["position"],
+        )
+    return out
 
 
 def assign_player_tag(
-    role_z: float,
-    efficiency_z: float,
-    production_z: float,
+    role_pct: float,
+    efficiency_pct: float,
+    production_pct: float,
     *,
     volume_qualified: bool,
 ) -> str:
     """
-    Player tag from v12 axis z-scores (cutoffs in config.TAG_* constants).
+    Player tag from within-position axis percentiles (New_scoring.txt / config.TAG_*_PCT).
 
-    Age affects tags only via age-adjusted efficiency_z, not as a gate.
     Priority: star > regress_negative > breakout > positive_outlook > neutral.
     """
-    if (
-        _tag_axis_ge(production_z, config.TAG_STAR_MIN_PRODUCTION_Z)
-        and _tag_axis_ge(efficiency_z, config.TAG_STAR_MIN_EFFICIENCY_Z)
+    if _tag_pct_gt(efficiency_pct, config.TAG_STAR_MIN_EFF_PCT) and _tag_pct_gt(
+        production_pct, config.TAG_STAR_MIN_PROD_PCT
     ):
         return "star"
     if (
-        _tag_axis_ge(production_z, config.TAG_REGRESS_MIN_PRODUCTION_Z)
-        and _tag_axis_le(efficiency_z, config.TAG_REGRESS_MAX_EFFICIENCY_Z)
-    ) or (
-        _tag_axis_ge(role_z, config.TAG_REGRESS_MIN_ROLE_Z)
-        and _tag_axis_le(production_z, config.TAG_REGRESS_MAX_PRODUCTION_Z)
+        _tag_pct_gt(production_pct, config.TAG_REGRESS_MIN_PROD_PCT)
+        and _tag_pct_gt(role_pct, config.TAG_REGRESS_MIN_ROLE_PCT)
+        and _tag_pct_lt(efficiency_pct, config.TAG_REGRESS_MAX_EFF_PCT)
     ):
         return "regress_negative"
     if (
-        _tag_axis_le(role_z, config.TAG_BREAKOUT_MAX_ROLE_Z)
-        and _tag_axis_ge(efficiency_z, config.TAG_BREAKOUT_MIN_EFFICIENCY_Z)
+        _tag_pct_lt(role_pct, config.TAG_BREAKOUT_MAX_ROLE_PCT)
+        and _tag_pct_gt(efficiency_pct, config.TAG_EFF_PCT_HIGH)
         and volume_qualified
     ):
         return "breakout"
-    if (
-        _tag_axis_le(production_z, config.TAG_OUTLOOK_MAX_PRODUCTION_Z)
-        and _tag_axis_ge(efficiency_z, config.TAG_OUTLOOK_MIN_EFFICIENCY_Z)
+    if _tag_pct_gt(role_pct, config.TAG_POSITIVE_OUTLOOK_MIN_ROLE_PCT) and _tag_pct_gt(
+        efficiency_pct, config.TAG_EFF_PCT_HIGH
     ):
         return "positive_outlook"
     return "neutral"
 
 
 def assign_player_tag_from_row(row: pd.Series) -> str:
-    """Tag helper when TD-luck and axis z columns are on the row."""
-    position = row.get("position", "")
-    role_z = float(pd.to_numeric(row.get("role_z", 0.0), errors="coerce") or 0.0)
-    eff_z = float(pd.to_numeric(row.get("efficiency_z", 0.0), errors="coerce") or 0.0)
-    prod_z = float(pd.to_numeric(row.get("production_z", 0.0), errors="coerce") or 0.0)
+    """Tag helper using role_pct / efficiency_pct / production_pct on the row."""
+    role_pct = float(pd.to_numeric(row.get("role_pct", np.nan), errors="coerce"))
+    eff_pct = float(pd.to_numeric(row.get("efficiency_pct", np.nan), errors="coerce"))
+    prod_pct = float(pd.to_numeric(row.get("production_pct", np.nan), errors="coerce"))
 
-    tag = assign_player_tag(
-        role_z,
-        eff_z,
-        prod_z,
+    return assign_player_tag(
+        role_pct,
+        eff_pct,
+        prod_pct,
         volume_qualified=bool(row.get("_volume_qualified", is_qualified(row))),
     )
-    if tag == "neutral" and _td_luck_triggered(row, position, prod_z, eff_z):
-        return "regress_negative"
-    return tag
 
 
 def is_qualified(row: pd.Series) -> bool:
@@ -430,6 +423,49 @@ def _rush_col(pbp: pd.DataFrame) -> str:
     return "rush_attempt" if "rush_attempt" in pbp.columns else "rush"
 
 
+def _qb_epa_per_dropback_from_pbp(pbp: pd.DataFrame) -> pd.Series:
+    """Total EPA on dropbacks (pass attempts + sacks) divided by dropback count."""
+    if "epa" not in pbp.columns:
+        return pd.Series(dtype=float)
+    plays = pbp[pbp["passer_player_id"].notna()].copy()
+    is_dropback = (plays["pass_attempt"] == 1) | (plays["sack"] == 1)
+    plays = plays[is_dropback & plays["epa"].notna()]
+    if plays.empty:
+        return pd.Series(dtype=float)
+    totals = plays.groupby("passer_player_id")["epa"].sum()
+    counts = plays.groupby("passer_player_id").size()
+    return totals / counts.replace(0, np.nan)
+
+
+def _weighted_ngs_mean(ngs: pd.DataFrame, value_col: str) -> pd.DataFrame:
+    """Attempt-weighted season mean for one NGS passing column."""
+    if ngs.empty or value_col not in ngs.columns or "attempts" not in ngs.columns:
+        return pd.DataFrame(columns=["player_gsis_id", value_col])
+    return (
+        ngs.groupby("player_gsis_id")
+        .apply(
+            lambda g: np.average(g[value_col], weights=g["attempts"].clip(lower=1))
+            if g["attempts"].sum() > 0
+            else np.nan,
+            include_groups=False,
+        )
+        .reset_index(name=value_col)
+    )
+
+
+def _compute_qb_anya_value(out: pd.DataFrame) -> pd.Series:
+    """Adjusted net yards per attempt: (Yds + 20*TD - 45*INT - sack yards) / (Att + sacks)."""
+    ints = pd.to_numeric(out.get("interceptions"), errors="coerce").fillna(0)
+    sack_yards = pd.to_numeric(out.get("sack_yards_lost"), errors="coerce").fillna(0)
+    yards = pd.to_numeric(out.get("passing_yards"), errors="coerce")
+    tds = pd.to_numeric(out.get("passing_tds"), errors="coerce").fillna(0)
+    att = pd.to_numeric(out.get("pass_attempts"), errors="coerce")
+    sacks = pd.to_numeric(out.get("sacks"), errors="coerce").fillna(0)
+    denom = (att + sacks).replace(0, np.nan)
+    numerator = yards + 20 * tds - 45 * ints - sack_yards
+    return numerator / denom
+
+
 def _merge_qb_weekly_volumes(
     out: pd.DataFrame, weekly: pd.DataFrame, season: int
 ) -> pd.DataFrame:
@@ -439,13 +475,18 @@ def _merge_qb_weekly_volumes(
     wk = weekly[(weekly["season"] == season) & (weekly["position"] == "QB")].copy()
     if wk.empty:
         return out
-    vol = wk.groupby("player_id", as_index=False).agg(
-        completions_wk=("completions", "sum"),
-        passing_yards_wk=("passing_yards", "sum"),
-        passing_tds_wk=("passing_tds", "sum"),
-        interceptions_wk=("interceptions", "sum"),
-        pass_attempts_wk=("attempts", "sum"),
-    )
+    agg_spec: dict = {
+        "completions_wk": ("completions", "sum"),
+        "passing_yards_wk": ("passing_yards", "sum"),
+        "passing_tds_wk": ("passing_tds", "sum"),
+        "interceptions_wk": ("interceptions", "sum"),
+        "pass_attempts_wk": ("attempts", "sum"),
+    }
+    if "sacks" in wk.columns:
+        agg_spec["sacks_wk"] = ("sacks", "sum")
+    if "sack_yards" in wk.columns:
+        agg_spec["sack_yards_wk"] = ("sack_yards", "sum")
+    vol = wk.groupby("player_id", as_index=False).agg(**agg_spec)
     merged = out.merge(vol, on="player_id", how="left")
     for pbp_col, wk_col in (
         ("completions", "completions_wk"),
@@ -453,6 +494,8 @@ def _merge_qb_weekly_volumes(
         ("passing_tds", "passing_tds_wk"),
         ("interceptions", "interceptions_wk"),
         ("pass_attempts", "pass_attempts_wk"),
+        ("sacks", "sacks_wk"),
+        ("sack_yards_lost", "sack_yards_wk"),
     ):
         if wk_col in merged.columns:
             if pbp_col not in merged.columns:
@@ -503,6 +546,14 @@ def _compute_qb_metrics(
     else:
         ints = pd.DataFrame(columns=["passer_player_id", "interceptions"])
     sack_ct = sacks.groupby("passer_player_id", as_index=False).agg(sacks=("sack", "sum"))
+    if not sacks.empty and "yards_gained" in sacks.columns:
+        sack_yds = (
+            sacks.groupby("passer_player_id")["yards_gained"]
+            .sum()
+            .reset_index(name="sack_yards_lost")
+        )
+        sack_yds["sack_yards_lost"] = sack_yds["sack_yards_lost"].abs()
+        sack_ct = sack_ct.merge(sack_yds, on="passer_player_id", how="left")
     out = dropbacks.merge(sack_ct, on="passer_player_id", how="left")
     if not ints.empty:
         out = out.merge(ints, on="passer_player_id", how="left")
@@ -522,55 +573,62 @@ def _compute_qb_metrics(
         )
         out = out.merge(cpoe, left_on="passer_player_id", right_on="passer_player_id", how="left")
 
+    out["qb_completion_percentage_above_expectation_value"] = np.nan
+    out["qb_passer_rating_value"] = np.nan
     if not ngs_passing.empty:
         ngs = ngs_passing[ngs_passing["season"] == season].copy()
-        if "player_gsis_id" in ngs.columns and "completion_percentage_above_expectation" in ngs.columns:
-            ngs_agg = (
-                ngs.groupby("player_gsis_id")
-                .apply(
-                    lambda g: np.average(
-                        g["completion_percentage_above_expectation"],
-                        weights=g["attempts"].clip(lower=1),
-                    )
-                    if g["attempts"].sum() > 0
-                    else np.nan,
-                    include_groups=False,
+        if "player_gsis_id" in ngs.columns:
+            if "completion_percentage_above_expectation" in ngs.columns:
+                ngs_cpoe = _weighted_ngs_mean(
+                    ngs, "completion_percentage_above_expectation"
+                ).rename(columns={"completion_percentage_above_expectation": "ngs_cpoe"})
+                out = out.merge(
+                    ngs_cpoe,
+                    left_on="passer_player_id",
+                    right_on="player_gsis_id",
+                    how="left",
                 )
-                .reset_index(name="ngs_cpoe")
-            )
-            out = out.merge(
-                ngs_agg,
-                left_on="passer_player_id",
-                right_on="player_gsis_id",
-                how="left",
-            )
-            # Keep an explicit NGS-only CPOE-style metric for analysis.
-            out["qb_completion_percentage_above_expectation_value"] = out.get("ngs_cpoe")
-            if "qb_cpoe_value" not in out.columns:
-                out["qb_cpoe_value"] = np.nan
-            out["qb_cpoe_value"] = out["ngs_cpoe"].combine_first(out["qb_cpoe_value"])
-        else:
-            out["qb_completion_percentage_above_expectation_value"] = np.nan
-    else:
-        out["qb_completion_percentage_above_expectation_value"] = np.nan
+                out["qb_completion_percentage_above_expectation_value"] = out.get("ngs_cpoe")
+                if "qb_cpoe_value" not in out.columns:
+                    out["qb_cpoe_value"] = np.nan
+                out["qb_cpoe_value"] = out["ngs_cpoe"].combine_first(out["qb_cpoe_value"])
+            if "passer_rating" in ngs.columns:
+                ngs_pr = _weighted_ngs_mean(ngs, "passer_rating").rename(
+                    columns={"passer_rating": "ngs_passer_rating"}
+                )
+                out = out.merge(
+                    ngs_pr,
+                    left_on="passer_player_id",
+                    right_on="player_gsis_id",
+                    how="left",
+                )
+                out["qb_passer_rating_value"] = out.get("ngs_passer_rating")
 
     out["qb_td_rate_value"] = out["pass_tds"] / out["dropbacks"].replace(0, np.nan)
     out["qb_adot_value"] = out["air_yards"] / out["pass_attempts"].replace(0, np.nan)
     out["qb_pressure_rate_value"] = out["pressures"] / out["dropbacks"].replace(0, np.nan)
-    if "epa" in df.columns:
-        epa = (
-            df.groupby("passer_player_id", as_index=False)["epa"]
-            .mean()
-            .rename(columns={"epa": "qb_epa_per_play_value"})
-        )
-        out = out.merge(epa, on="passer_player_id", how="left")
-    else:
-        out["qb_epa_per_play_value"] = np.nan
+    epa_per_db = _qb_epa_per_dropback_from_pbp(df)
+    out["qb_epa_per_play_value"] = out["passer_player_id"].map(epa_per_db)
 
     out = out.rename(columns={"passer_player_id": "player_id"})
     out["position"] = "QB"
     out["season"] = season
     out = _merge_qb_weekly_volumes(out, weekly, season)
+
+    if (
+        out["qb_epa_per_play_value"].isna().any()
+        and not weekly.empty
+        and "passing_epa" in weekly.columns
+    ):
+        wk = weekly[(weekly["season"] == season) & (weekly["position"] == "QB")]
+        epa_tot = wk.groupby("player_id")["passing_epa"].sum(min_count=1)
+        missing = out["qb_epa_per_play_value"].isna()
+        db = out.loc[missing, "dropbacks"].replace(0, np.nan)
+        out.loc[missing, "qb_epa_per_play_value"] = (
+            out.loc[missing, "player_id"].map(epa_tot) / db
+        )
+
+    out["qb_anya_value"] = _compute_qb_anya_value(out)
     return out
 
 
@@ -1015,7 +1073,7 @@ def _apply_composite_adjustments(df: pd.DataFrame) -> pd.DataFrame:
 
 def reapply_player_tags(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Recompute player flags from axis z-scores using current config.TAG_* cutoffs.
+    Recompute player flags from axis percentiles using current config.TAG_*_PCT rules.
 
     Use after changing tag thresholds so the UI updates without a full metrics rebuild.
     """
@@ -1030,6 +1088,7 @@ def reapply_player_tags(df: pd.DataFrame) -> pd.DataFrame:
     if "production_z" not in out.columns:
         out["production_z"] = out.get("composite_z", 0.0)
 
+    out = _attach_axis_percentiles_for_tags(out)
     out["_volume_qualified"] = out.apply(is_qualified, axis=1)
     out["flag"] = out.apply(assign_player_tag_from_row, axis=1).apply(config.normalize_player_flag)
     out["refined_flag"] = out["flag"]
@@ -1277,10 +1336,10 @@ def build_outlook_2026_df(
     outlook = apply_flag_labels(outlook)
     outlook["outlook_type"] = outlook["flag"].map(
         {
-            "star": "Star (sustainable production)",
-            "breakout": "Breakout (role upside)",
-            "positive_outlook": "Positive outlook",
-            "regress_negative": "Fade (negative regression)",
+            "star": "Star (Ez & Pz elite)",
+            "breakout": "Breakout (Rz < 50th, Ez > 85th)",
+            "positive_outlook": "Pos outlook (Rz & Ez)",
+            "regress_negative": "Fade (high Pz/Rz, low Ez)",
         }
     ).fillna(outlook["flag_label"])
     if "composite_z_adjusted" in outlook.columns:

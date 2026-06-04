@@ -9,6 +9,7 @@
 - [ ] Team summary net score uses adjusted composite (`composite_z_adjusted`).
 - [ ] `qb_completion_percentage_above_expectation` is excluded from composite.
 - [ ] `qb_epa_per_play` is included when `epa` data is present.
+- [ ] `qb_passer_rating` (NGS) and `qb_anya` populate for qualified QBs.
 - [ ] WR/TE/RB `opportunity_share` is computed and z-scored.
 - [ ] WR/TE `vol_air_yards_share` is computed when `air_yards_share` data is present.
 - [ ] Volume metrics in scope (`vol_targets`, `vol_carries`) contribute to composite.

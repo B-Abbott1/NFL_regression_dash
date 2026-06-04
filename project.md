@@ -111,7 +111,7 @@ rushes
 1. For each metric, compute player's season-to-date value
 2. Compute z-score against peak-age cohort from prior season (`z_score_baseline_season`)
 3. Build v12 axis scores: `role_z`, `efficiency_z` (age-adjusted), `production_z`
-4. Assign player tag via `assign_player_tag` (`star`, `regress_negative`, `breakout`, `positive_outlook`, `neutral`)
+4. Assign player tag via within-position axis percentiles (`New_scoring.txt` / `config.TAG_*_PCT`)
 5. `composite_z` / `composite_z_adjusted` = `production_z` (used for leaderboard, team sum, 2026 outlook sort)
 6. 2026 outlook includes players whose `flag` is in `OUTLOOK_REGRESSION_FLAGS`
 7. Qualification thresholds: QB ≥ 100 dropbacks, WR/TE ≥ 40 targets, RB ≥ 60 carries (`config.py`)

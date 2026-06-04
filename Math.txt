@@ -1,67 +1,31 @@
-ROLE Z — share / primary volume
+ROLE Z (Rz) — share / primary volume
 
 - QB: dropbacks (vol_dropbacks)
-
 - RB: opportunity_share
-
 - WR/TE: opportunity_share
 
+EFFICIENCY Z (Ez) — process only (age adjustment applied to Ez)
 
-
-EFFICIENCY Z — process only (2–3 metrics; age NOT here)
-
-- QB: qb_cpoe, qb_epa_per_play
-
+- QB: qb_cpoe, qb_epa_per_play, qb_passer_rating, qb_anya
 - RB: rb_ryoe, rb_efficiency
-
 - WR/TE: recv_ypt (70%), recv_separation (15%), recv_yac_oe (15%)
 
+PRODUCTION Z (Pz) — counting stats
 
-
-PRODUCTION Z — counting stats
-
-- QB: passing_yards, passing_tds (INT excluded from production axis; was compressing elite volume)
-
+- QB: passing_yards, passing_tds
 - RB: scrimmage_yards, total_tds
-
 - WR/TE: receiving_yards, receptions, receiving_tds
 
+TAGS — within-position percentiles of Rz / Ez / Pz (see New_scoring.txt, config.TAG_*_PCT)
 
+Priority: star > regress_negative > breakout > positive_outlook > neutral
 
-TAGS — edit cutoffs in config.py (TAG_* constants)
-
-Uses role_z, efficiency_z, production_z (weighted mean when SCORE_AXIS_WEIGHTS set, else equal mean).
-
-Baseline: prior season, position peak-age cohort. Leaderboard percentile = within-position rank of axis z.
-
-
-
-Defaults (TAG_AXIS_HIGH_Z=1.5, TAG_AXIS_LOW_Z=-0.5):
-
-- star:              prod_z >= 1.5 AND eff_z >= 1.5 (no age gate)
-
-- regress_negative:  (prod_z >= 1.5 AND eff_z <= -0.5)
-
-                     OR (role_z >= 1.5 AND prod_z <= -0.5)
-
-                     OR (prod_z >= 1.5 AND eff_z <= 0 AND td_rate_z >= 1.5)
-
-- breakout:          role_z <= -0.5 AND eff_z >= 1.5 AND qualified
-
-- positive_outlook:  prod_z <= -0.5 AND eff_z >= 1.5
-
+- star:              Ez > 85th AND Pz > 90th
+- regress_negative:  Pz > 60th AND Rz > 60th AND Ez < 35th
+- breakout:          Rz < 50th AND Ez > 85th (volume qualified)
+- positive_outlook:  Rz > 50th AND Ez > 85th
 - neutral:           else
 
+Leaderboard display percentile = same cohort rank for the selected focus axis.
 
-
-Age does NOT gate tags. It adjusts efficiency_z only:
-  efficiency_z = mean(efficiency metric z) + efficiency_age_z_adjustment
-  adjustment = -(age_curve_value) * EFFICIENCY_AGE_Z_PER_YEAR * position_weight
-  (young → negative age_curve_value → boost eff z; old → penalty)
-
-Qualification (breakout only): QB 100 dropbacks, WR/TE 40 targets, RB 60 carries.
-
-
-
-Implemented: METRICS_SCORING_VERSION=13.
-
+Implemented: METRICS_SCORING_VERSION=14.

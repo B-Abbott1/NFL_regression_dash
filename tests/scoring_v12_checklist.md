@@ -3,6 +3,7 @@
 - [ ] `role_z`, `efficiency_z`, `production_z` populated on leaderboard rows
 - [ ] `composite_z` equals `production_z` (leaderboard sort / team sum / 2026 outlook)
 - [ ] No `sustainability_score` / `volume_scalar` on output
-- [ ] Flags: `star`, `regress_negative`, `breakout`, `positive_outlook`, `neutral`
+- [ ] Flags: `star`, `regress_negative`, `breakout`, `positive_outlook`, `neutral` (percentile rules v14)
+- [ ] `role_pct`, `efficiency_pct`, `production_pct` on tagged rows
 - [ ] TE has `opportunity_share` z-scored
 - [ ] QB Role uses `vol_dropbacks`; RB production uses scrimmage yards + total TDs

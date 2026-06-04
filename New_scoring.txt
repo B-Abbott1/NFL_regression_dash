@@ -1,0 +1,17 @@
+Pz: production Z  Ez: Efficiency Z  Rz: Role z
+
+breakout:
+Rz below 50 percentile, Ez above 85 percentile
+
+Pos Outlook:
+Rz over 50 percentile, Ez above 85 percentile
+
+Star:
+Ez over 85 percentile, Pz over 90 percentile
+
+negative regression:
+Pz and Rz over 60 percentile, and Ez below 35 percentile
+
+neutral for anyone not applicable
+percentile by position like on the dashboard
+*let me know if you need any clarification
