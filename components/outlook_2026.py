@@ -1,10 +1,11 @@
 """2026 outlook — positive and negative regression candidates from 2025 analysis."""
 
 import dash_bootstrap_components as dbc
+from dash import dcc
 
 import config
 from components.team_logos import TEAM_LOGO_COLUMN
-from components.ui_styles import TABLE_STYLE_DATA_CONDITIONAL, make_data_table, page_panel
+from components.ui_styles import filter_label, make_data_table, page_panel
 
 OUTLOOK_STYLE_EXTRA = [
     {
@@ -43,6 +44,42 @@ def build_outlook_2026_layout():
         section_id="outlook-2026-section",
         hidden=True,
         children=[
+            dbc.Row(
+                [
+                    dbc.Col(
+                        [
+                            filter_label("Position"),
+                            dcc.Dropdown(
+                                id="outlook-position-filter",
+                                options=[{"label": p, "value": p} for p in config.POSITIONS],
+                                value=list(config.POSITIONS),
+                                multi=True,
+                                className="dash-dropdown",
+                            ),
+                        ],
+                        md=4,
+                        lg=2,
+                        sm=6,
+                    ),
+                    dbc.Col(
+                        [
+                            filter_label("Team"),
+                            dcc.Dropdown(
+                                id="outlook-team-filter",
+                                options=[],
+                                value=None,
+                                multi=True,
+                                placeholder="All teams",
+                                className="dash-dropdown",
+                            ),
+                        ],
+                        md=4,
+                        lg=2,
+                        sm=6,
+                    ),
+                ],
+                className="g-3 filters-row mb-4",
+            ),
             dbc.Alert(id="outlook-2026-status", is_open=False, color="warning", className="mb-3"),
             make_data_table(
                 "outlook-2026-table",
@@ -52,13 +89,8 @@ def build_outlook_2026_layout():
                     {"name": "Pos", "id": "position"},
                     {"name": f"{config.OUTLOOK_SEASON} Team", "id": "projected_team"},
                     {"name": "Outlook", "id": "outlook_type"},
-                    {"name": "2025 Z", "id": "composite_z", "type": "numeric", "format": {"specifier": ".2f"}},
-                    {"name": "Primary Metric", "id": "primary_metric_name"},
-                    {"name": "Current", "id": "primary_value", "type": "numeric", "format": {"specifier": ".3f"}},
-                    {"name": "Expected", "id": "primary_expected", "type": "numeric", "format": {"specifier": ".3f"}},
-                    {"name": "Flag", "id": "flag_label"},
                 ],
-                style_data_conditional=TABLE_STYLE_DATA_CONDITIONAL + OUTLOOK_STYLE_EXTRA,
+                style_data_conditional=OUTLOOK_STYLE_EXTRA,
             ),
         ],
     )

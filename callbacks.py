@@ -315,13 +315,35 @@ def register_callbacks(app, raw_data: dict) -> None:
         return [None] * len(_PLAYER_DETAIL_TABLES) + [False]
 
     @callback(
+        Output("outlook-team-filter", "options"),
+        Input("outlook-position-filter", "value"),
+        Input("metrics-store", "data"),
+    )
+    def populate_outlook_team_filter(positions, session):
+        try:
+            metrics = session_metrics(session)
+            rosters = raw_data.get("rosters", pd.DataFrame()) if raw_data else pd.DataFrame()
+            df = build_outlook_2026_df(metrics, rosters) if not metrics.empty else pd.DataFrame()
+            if df.empty or "projected_team" not in df.columns:
+                return []
+            if positions:
+                df = df[df["position"].isin(positions)]
+            teams = sorted(df["projected_team"].dropna().unique())
+            return [{"label": t, "value": t} for t in teams]
+        except Exception:
+            logger.exception("Failed to populate outlook team filter")
+            return []
+
+    @callback(
         Output("outlook-2026-table", "data"),
         Output("outlook-2026-status", "children"),
         Output("outlook-2026-status", "is_open"),
         Input("metrics-store", "data"),
         Input("nav-outlook-2026", "n_clicks"),
+        Input("outlook-position-filter", "value"),
+        Input("outlook-team-filter", "value"),
     )
-    def update_outlook_2026_table(session, *_):
+    def update_outlook_2026_table(session, _nav_clicks, positions, teams):
         try:
             metrics = session_metrics(session)
             rosters = raw_data.get("rosters", pd.DataFrame()) if raw_data else pd.DataFrame()
@@ -335,6 +357,14 @@ def register_callbacks(app, raw_data: dict) -> None:
                     f"(no {config.ANALYSIS_SEASON} players with outlook flags).",
                     True,
                 )
+            if positions:
+                df_outlook_2026 = df_outlook_2026[df_outlook_2026["position"].isin(positions)]
+            if teams:
+                df_outlook_2026 = df_outlook_2026[
+                    df_outlook_2026["projected_team"].isin(teams)
+                ]
+            if df_outlook_2026.empty:
+                return [], "No players match the selected position and team filters.", True
             display_cols = _table_columns(
                 df_outlook_2026,
                 [
@@ -342,12 +372,6 @@ def register_callbacks(app, raw_data: dict) -> None:
                     "position",
                     "projected_team",
                     "outlook_type",
-                    "composite_z",
-                    "primary_metric_name",
-                    "primary_value",
-                    "primary_expected",
-                    "flag",
-                    "flag_label",
                 ],
             )
             export_cols = _table_export_cols(df_outlook_2026, display_cols)
